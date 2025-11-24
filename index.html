@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUTA Guide ny Envilinks</title>
+    <title>Envilinks FUTA Fresher Guide</title>
+    <link rel="icon" type="image/jpg" href="logo.jpg">
     <style>
         :root {
             --primary: #003366;
@@ -365,67 +366,22 @@
                 flex-direction: column;
             }
         }
+        #themeButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Changed from top to bottom */
+  padding: 10px 15px;
+  background: #001f3f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
     </style>
 </head>
 <script>
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js')
-      .then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      })
-      .catch(function(error) {
-        console.log('ServiceWorker registration failed: ', error);
-      });
-  });
-}
-
-// Install prompt
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  
-  // Show install button (you can add this to your UI)
-  const installButton = document.createElement('button');
-  installButton.textContent = 'Install App';
-  installButton.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #003366;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-  `;
-  
-  installButton.addEventListener('click', () => {
-    installButton.style.display = 'none';
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted install');
-        } else {
-          console.log('User dismissed install');
-        }
-        deferredPrompt = null;
-      });
-    }
-  });
-  
-  document.body.appendChild(installButton);
-});
-
-// Track app installation
-window.addEventListener('appinstalled', (evt) => {
-  console.log('FUTA Portal was installed successfully');
-  // You can send analytics here
-});
+// 
 </script>
 <body>
     <header>
@@ -711,7 +667,7 @@ Would you like a visual campus map or a breakdown of each school and its departm
         <section id="courses" class="page">
             <div class="hero">
                 <h2>Course Eligibility Checker</h2>
-                <p>Find out which FUTA courses you're eligible for based on your screening score and UTME subjects</p>
+                <p>Find out which FUTA courses you're eligible for based on your screening score and UTME subjects (Faculty = School in FUTA)</p>
             </div>
 
             <div class="content-section">
@@ -793,7 +749,7 @@ Would you like a visual campus map or a breakdown of each school and its departm
 
     <footer>
         <div class="container">
-            <p>&copy; Envilinks FUTA Guide | For Educational Purposes Only | Proudly created by                 <a href="https://eimc.vercel.app" target="_blank"> Envilinks Interconnectivity Media Concept</a></p>
+            <p>&copy; Envilinks FUTA Guide | For Educational Purposes Only | Version 1.2 | Proudly created by                 <a href="https://eimc.vercel.app" target="_blank"> Envilinks Interconnectivity Media Concept</a></p>
         </div>
     </footer>
 
@@ -882,85 +838,91 @@ Would you like a visual campus map or a breakdown of each school and its departm
         // Course eligibility data with required subjects
         const coursesData = [
             // School of Agriculture and Agricultural Technology (SAAT)
-            { school: "SAAT", name: "Agricultural Extension And Communication Technology (AEC)", cutoff: 47.81, requiredSubjects: ["Biology/Agricultural Science"] },
-            { school: "SAAT", name: "Agricultural Resources Economics (ARE)", cutoff: 47.50, requiredSubjects: ["Biology/Agricultural Science"] },
-            { school: "SAAT", name: "Animal and Production Health (APH)", cutoff: 55.52, requiredSubjects: [] },
-            { school: "SAAT", name: "Crop Soil and Pest Management (CSP)", cutoff: 48.2, requiredSubjects: [] },
-            { school: "SAAT", name: "Ecotourism and Wildlife Management (EWM)", cutoff: 47.70, requiredSubjects: [] },
-            { school: "SAAT", name: "Fisheries and Aquaculture Technology (FAT)", cutoff: 47.50, requiredSubjects: [] },
-            { school: "SAAT", name: "Food Science And Technology (FST)", cutoff: 58.12, requiredSubjects: [] },
-            { school: "SAAT", name: "Forestry Wood and Technology (FWT)", cutoff: 47.5, requiredSubjects: [] },
-            { school: "SAAT", name: "Nutrition and Dietetics (NTD)", cutoff: 55.70, requiredSubjects: ["Biology/Agricultural Science"] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Agricultural Extension And Communication Technology (AEC)", cutoff: 47.81, requiredSubjects: ["Biology/Agricultural Science"] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Agricultural Resources Economics (ARE)", cutoff: 47.50, requiredSubjects: ["Biology/Agricultural Science"] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Animal and Production Health (APH)", cutoff: 55.52, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Crop Soil and Pest Management (CSP)", cutoff: 48.2, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Ecotourism and Wildlife Management (EWM)", cutoff: 47.70, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Fisheries and Aquaculture Technology (FAT)", cutoff: 47.50, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Food Science And Technology (FST)", cutoff: 58.12, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Forestry Wood and Technology (FWT)", cutoff: 47.5, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Nutrition and Dietetics (NTD)", cutoff: 55.70, requiredSubjects: ["Biology/Agricultural Science"] },
             
             // School of Basic Medical Sciences (SBMS)
-            { school: "SBMS", name: "Anatomy", cutoff: 60.40, requiredSubjects: ["Biology"] },
-            { school: "SBMS", name: "Biomedical Technology (BIM)", cutoff: 61.66, requiredSubjects: ["Biology"] },
-            { school: "SBMS", name: "Medical Laboratory Science (MLS)", cutoff: 67.28, requiredSubjects: ["Biology"] },
-            { school: "SBMS", name: "Medicine and Surgery (MBBS)", cutoff: 78.25, requiredSubjects: ["Biology"] },
-            { school: "SBMS", name: "Physiology (PHS)", cutoff: 57.26, requiredSubjects: ["Biology"] },
-            { school: "SBMS", name: "Nursing (NRS)", cutoff: 75, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Anatomy (ANY)", cutoff: 60.40, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Biomedical Technology (BIM)", cutoff: 61.66, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Medical Laboratory Science (MLS)", cutoff: 67.28, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Medicine and Surgery (MBBS)", cutoff: 78.25, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Physiology (PHS)", cutoff: 57.26, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Sciences (SBMS)", name: "Nursing (NSC)", cutoff: 75, requiredSubjects: ["Biology"] },
             
             // School of Computing (SOC)
-            { school: "SOC", name: "Computer Science (CSC)", cutoff: 69.12, requiredSubjects: ["Mathematics"] },
-            { school: "SOC", name: "Cyber Security (CYS)", cutoff: 63.75, requiredSubjects: ["Mathematics"] },
-            { school: "SOC", name: "Information System (IFS)", cutoff: 63.11, requiredSubjects: ["Mathematics"] },
-            { school: "SOC", name: "Information Technology (IFT)", cutoff: 64.23, requiredSubjects: ["Mathematics"] },
-            { school: "SOC", name: "Software Engineering (SEN)", cutoff: 70.38, requiredSubjects: ["Mathematics"] },
-            { school: "SOC", name: "Data Science (DTS)", cutoff: 65.38, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Computer Science (CSC)", cutoff: 69.12, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Cyber Security (CYS)", cutoff: 63.75, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Information System (IFS)", cutoff: 63.11, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Information Technology (IFT)", cutoff: 64.23, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Software Engineering (SEN)", cutoff: 70.38, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Data Science (DTS)", cutoff: 65.38, requiredSubjects: ["Mathematics"] },
             
-            // School of Engineering and Engineering Technology (SEET)(SIMME & SESE)
-            { school: "SEET", name: "Agricultural Engineering (AGE)", cutoff: 56.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Biomedical Engineering", cutoff: 63.40, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Chemical Engineering (CEE)", cutoff: 65.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Civil Engineering (CVE)", cutoff: 72.66, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Computer Engineering", cutoff: 69.62, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Electrical - Electronics Engineering (EEE)", cutoff: 74.37, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Industrial and Production Engineering (IPE)", cutoff: 53.53, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Information and Communication Engineering (ICE)", cutoff: 57.60, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Mechanical Engineering (MEE)", cutoff: 73.75, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Mechatronics Engineering (MCE)", cutoff: 71.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Mining Engineering (MNE)", cutoff: 55.20, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
-            { school: "SEET", name: "Metallurgical Engineering (MME)", cutoff: 55.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            // School of Infrastructure, Material and Mineral Engineering (SIMME)
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Agricultural Engineering (AGE)", cutoff: 56.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Chemical Engineering (CEE)", cutoff: 65.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Civil Engineering (CVE)", cutoff: 72.66, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Industrial and Production Engineering (IPE)", cutoff: 53.53, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Mechanical Engineering (MEE)", cutoff: 73.75, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Mechatronics Engineering (MCE)", cutoff: 71.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Mining Engineering (MNE)", cutoff: 55.20, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure, Material and Mineral Engineering (SIMME)", name: "Metallurgical Engineering (MME)", cutoff: 55.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            
+             // School of Electronic System  Engineering (SESE)  
+            { school: "School of Electronic System  Engineering (SESE) ", name: "Biomedical Engineering", cutoff: 63.40, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electronic System  Engineering (SESE) ", name: "Computer Engineering", cutoff: 69.62, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electronic System  Engineering (SESE) ", name: "Electrical - Electronics Engineering (EEE)", cutoff: 74.37, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electronic System  Engineering (SESE) ", name: "Information and Communication Engineering (ICE)", cutoff: 57.60, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            
             
             // School of Earth and Mineral Science (SEMS)
-            { school: "SEMS", name: "Applied Geology (AGY)", cutoff: 57.30, requiredSubjects: ["Geography"] },
-            { school: "SEMS", name: "Applied Geophysics (AGP)", cutoff: 56.66, requiredSubjects: ["Geography"] },
-            { school: "SEMS", name: "Marine Science And Technology (MST)", cutoff: 51.44, requiredSubjects: ["Geography"] },
-            { school: "SEMS", name: "Metrology And Climate Science (MCS)", cutoff: 51.70, requiredSubjects: ["Geography"] },
-            { school: "SEMS", name: "Remote Sensing And Geoinformatics (RSG)", cutoff: 51.10, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Applied Geology (AGY)", cutoff: 57.30, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Applied Geophysics (AGP)", cutoff: 56.66, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Marine Science And Technology (MST)", cutoff: 51.44, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Metrology And Climate Science (MCS)", cutoff: 51.70, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Remote Sensing And Geoinformatics (RSG)", cutoff: 51.10, requiredSubjects: ["Geography"] },
             
             // School of Environmental Technology (SET)
-            { school: "SET", name: "Architecture (ARC)", cutoff: 72.90, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Building Technology (BDG)", cutoff: 57.20, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Estate Management (ESM)", cutoff: 48.30, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Industrial Design (IDD)", cutoff: 53.25, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Quantity Survey (QSV)", cutoff: 57.60, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Survey And Geo-informatics (SVG)", cutoff: 64.25, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Textile Design Technology (TDT)", cutoff: 52.87, requiredSubjects: ["Geography"] },
-            { school: "SET", name: "Urban And Regional Planning (URP)", cutoff: 52.90, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Architecture (ARC)", cutoff: 72.90, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Building Technology (BDG)", cutoff: 57.20, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Estate Management (ESM)", cutoff: 48.30, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Industrial Design (IDD)", cutoff: 53.25, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Quantity Survey (QSV)", cutoff: 57.60, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Survey And Geo-informatics (SVG)", cutoff: 64.25, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Textile Design Technology (TDT)", cutoff: 52.87, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Urban And Regional Planning (URP)", cutoff: 52.90, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Environmental Management (ENM)", cutoff: 50.00, requiredSubjects: ["Geography"] },
             
             // School of Logistics and Innovation Technology (SLIT)
-            { school: "SLIT", name: "Business Information Technology (BIT)", cutoff: 50.00, requiredSubjects: [] },
-            { school: "SLIT", name: "Business Management Technology (BMT)", cutoff: 50.00, requiredSubjects: [] },
-            { school: "SLIT", name: "Entrepreneurship Management Technology (ENT)", cutoff: 51.66, requiredSubjects: [] },
-            { school: "SLIT", name: "Logistics And Transport Technology (LTT)", cutoff: 55.60, requiredSubjects: [] },
-            { school: "SLIT", name: "Project Management Technology (PMT)", cutoff: 56.40, requiredSubjects: [] },
-            { school: "SLIT", name: "Security & Investment Management Technology (SIMT)", cutoff: 49.50, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Business Information Technology (BIT)", cutoff: 50.00, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Business Management Technology (BMT)", cutoff: 50.00, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Entrepreneurship Management Technology (ENT)", cutoff: 51.66, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Logistics And Transport Technology (LTT)", cutoff: 55.60, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Project Management Technology (PMT)", cutoff: 56.40, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Security & Investment Management Technology (SIMT)", cutoff: 49.50, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Financial Technology (FIT)", cutoff: 49.50, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Procurement Management Technology (PMT)", cutoff: 49.50, requiredSubjects: [] },
             
             // School of Life Sciences (SLS)
-            { school: "SLS", name: "Biochemistry (BCH)", cutoff: 64.33, requiredSubjects: ["Biology"] },
-            { school: "SLS", name: "Biology (BIO)", cutoff: 52.62, requiredSubjects: ["Biology"] },
-            { school: "SLS", name: "Biotechnology (BTH)", cutoff: 58.43, requiredSubjects: ["Biology"] },
-            { school: "SLS", name: "Microbiology (MCB)", cutoff: 64.30, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Biochemistry (BCH)", cutoff: 64.33, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Biology (BIO)", cutoff: 52.62, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Biotechnology (BTH)", cutoff: 58.43, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Microbiology (MCB)", cutoff: 64.30, requiredSubjects: ["Biology"] },
             
             // School of Physical Sciences (SPS)
-            { school: "SPS", name: "Chemistry (CHM)", cutoff: 55.30, requiredSubjects: [] },
-            { school: "SPS", name: "Education Technology (EDT)", cutoff: 48.72, requiredSubjects: [] },
-            { school: "SPS", name: "Library and Information Science (LIS)", cutoff: 48.90, requiredSubjects: [] },
-            { school: "SPS", name: "Mathematics (MTS)", cutoff: 59.64, requiredSubjects: ["Mathematics"] },
-            { school: "SPS", name: "Physics Electronics (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
-            { school: "SPS", name: "Physics Energy (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
-            { school: "SPS", name: "Statistics (STA)", cutoff: 50.00, requiredSubjects: ["Mathematics"] }
+            { school: "School of Physical Sciences (SPS)", name: "Chemistry (CHM)", cutoff: 55.30, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Education Technology (EDT)", cutoff: 48.72, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Library and Information Science (LIS)", cutoff: 48.90, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Mathematics (MTS)", cutoff: 59.64, requiredSubjects: ["Mathematics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Physics Electronics (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Physics Energy (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Statistics (STA)", cutoff: 50.00, requiredSubjects: ["Mathematics"] }
         ];
         // Display all courses on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -1120,6 +1082,38 @@ Would you like a visual campus map or a breakdown of each school and its departm
                 eligibleOnlyContainer.appendChild(schoolSection);
             }
         }
+        let currentTheme = 0;
+const themes = [
+  { primary: '#001f3f', secondary: '#ffffff' }, // Navy
+  { primary: '#B22222', secondary: '#ffffff' }, // Red
+  { primary: '#228B22', secondary: '#ffffff' }, // Green
+  { primary: '#9370DB', secondary: '#ffffff' }, // Purple
+  { primary: '#FFD700', secondary: '#333333' }, // Yellow
+  { primary: '#FF69B4', secondary: '#ffffff' }  // Pink
+];
+
+function changeTheme() {
+  currentTheme = (currentTheme + 1) % themes.length;
+  const theme = themes[currentTheme];
+  
+  // Override colors on common elements
+  document.querySelectorAll('header, nav, footer, .header, .nav, .footer').forEach(el => {
+    el.style.backgroundColor = theme.primary;
+    el.style.color = theme.secondary;
+  });
+  
+  document.body.style.backgroundColor = theme.secondary;
+  
+  // Save preference
+  localStorage.setItem('simpleTheme', currentTheme);
+}
+
+// Load saved theme
+if (localStorage.getItem('simpleTheme')) {
+  currentTheme = parseInt(localStorage.getItem('simpleTheme'));
+  changeTheme();
+}
     </script>
+    <button id="themeButton" onclick="changeTheme()">🎨 Themes</button>
 </body>
 </html>
