@@ -186,7 +186,7 @@ function shareOnWhatsApp() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const message = `My FUTA Screening Score Results:%0A%0A📊 *O'Level Score:* ${oLevelScore}%0A📝 *JAMB Score:* ${jambScore}%0A🏆 *Total Aggregate:* ${totalScore}%0A%0ACalculated using FUTA Screening Calculator`;
+    const message = `My FUTA Screening Score Results:%0A%0A📊 *O'Level Score:* ${oLevelScore}%0A📝 *JAMB Score:* ${jambScore}%0A🏆 *Total Aggregate:* ${totalScore}%0A%0ACalculated using Envilinks FUTA Fresher Guide Screening Calculator (https://envilinksfutafresherguide.vercel.app/calculator.html)`;
     
     window.open(`https://wa.me/?text=${message}`, '_blank');
 }
@@ -196,7 +196,7 @@ function copyResults() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using FUTA Screening Calculator`;
+    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide Screening Calculator (https://envilinksfutafresherguide.vercel.app/calculator.html) `;
     
     navigator.clipboard.writeText(text)
         .then(() => showNotification('Results copied to clipboard!', 'success'))
