@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUTA Screening Score Calculator</title>
+    <link rel="icon" type="image/jpg" href="logo.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>FUTA Score Calculator</h1>
+                </div>
+                <nav>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="calculator.html" class="nav-link active"><i class="fas fa-calculator"></i> Calculator</a></li>
+                        <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
+                    </ul>
+                </nav>
+                <div class="theme-switcher">
+                    <button id="themeToggle" aria-label="Change theme">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Calculator Page Content -->
+        <section id="calculator" class="page active">
+            <div class="hero">
+                <h2>Screening Score Calculator</h2>
+                <p>Calculate your FUTA screening aggregate using the official method</p>
+                <div class="score-display" id="score-display">
+                    <div class="score-item">
+                        <span>O'Level Score</span>
+                        <strong id="olevel-score">0.00</strong>
+                    </div>
+                    <div class="score-item">
+                        <span>JAMB Score</span>
+                        <strong id="jamb-score-display">0.00</strong>
+                    </div>
+                    <div class="score-item total">
+                        <span>Total Aggregate</span>
+                        <strong id="total-score">0.00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3><i class="fas fa-calculator"></i> How to Calculate Your Screening Result</h3>
+                <p>The FUTA screening score is calculated using your O'level results and JAMB score, using 2025 calculation of 75:25:</p>
+                
+                <div class="calculation-guide">
+                    <div class="guide-section">
+                        <h4><i class="fas fa-star"></i> O'level Calculation (25 points maximum)</h4>
+                        <p>Only 20 points can be attained from grades; remaining 5 points are decided by school/catchment</p>
+                        <div class="grade-points">
+                            <div class="grade-item">
+                                <span class="grade">A1</span>
+                                <span class="points">= 80 points</span>
+                            </div>
+                            <div class="grade-item">
+                                <span class="grade">B2</span>
+                                <span class="points">= 72 points</span>
+                            </div>
+                            <div class="grade-item">
+                                <span class="grade">B3</span>
+                                <span class="points">= 67 points</span>
+                            </div>
+                            <div class="grade-item">
+                                <span class="grade">C4</span>
+                                <span class="points">= 62 points</span>
+                            </div>
+                            <div class="grade-item">
+                                <span class="grade">C5</span>
+                                <span class="points">= 57 points</span>
+                            </div>
+                            <div class="grade-item">
+                                <span class="grade">C6</span>
+                                <span class="points">= 52 points</span>
+                            </div>
+                        </div>
+                        <p class="formula">Formula: Add points for 5 subjects → Divide by 5 → Divide by 100 → Multiply by 25</p>
+                    </div>
+                    
+                    <div class="guide-section">
+                        <h4><i class="fas fa-file-alt"></i> JAMB Calculation (75 points maximum)</h4>
+                        <p class="formula">Formula: (JAMB Score ÷ 400) × 75</p>
+                    </div>
+                    
+                    <div class="guide-section total-formula">
+                        <h4><i class="fas fa-sum"></i> Total Aggregate</h4>
+                        <p class="formula"><strong>Total = O'level Points + JAMB Points</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3><i class="fas fa-calculator"></i> Calculate Your Score</h3>
+                <form id="screening-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-book"></i> Select Your Five Core O'level Subjects and Grades:</label>
+                        
+                        <div class="subjects-container" id="subjects-container">
+                            <!-- Subjects will be added here dynamically -->
+                        </div>
+                        
+                        <button type="button" id="add-subject" class="add-subject-btn">
+                            <i class="fas fa-plus"></i> Add Subject
+                        </button>
+                        <small class="form-note">Note: You need exactly 5 subjects. Subjects with same name will be ignored.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jamb-score"><i class="fas fa-file-alt"></i> JAMB Score (out of 400):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="jamb-score" min="0" max="400" required>
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-calculator"></i> Calculate My Score
+                        </button>
+                        <button type="button" id="reset-form" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="result" class="result-box" style="display: none;">
+                    <h4><i class="fas fa-chart-line"></i> Your Screening Result</h4>
+                    <div class="result-details">
+                        <div class="result-item">
+                            <span>O'Level Points</span>
+                            <strong id="o-level-result">0.00/30</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>JAMB Points</span>
+                            <strong id="jamb-result">0.00/70</strong>
+                        </div>
+                        <div class="result-item total">
+                            <span>Total Aggregate</span>
+                            <strong id="total-result">0.00/100</strong>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <a href="courses.html" id="use-for-courses" class="btn-success">
+                            <i class="fas fa-arrow-right"></i> Use for Course Eligibility
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-share-alt"></i> Share Your Results</h3>
+                <p>After calculating your score, you can:</p>
+                <div class="share-options">
+                    <button class="share-btn" id="share-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                    </button>
+                    <button class="share-btn" id="copy-result">
+                        <i class="fas fa-copy"></i> Copy Results
+                    </button>
+                    <a href="index.html" class="share-btn">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; <span id="current-year"></span> FUTA Score Calculator | For Educational Purposes Only</p>
+                    <p>Proudly created by <a href="https://eimc.vercel.app" target="_blank">Envilinks Interconnectivity Media Concept</a></p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="calculator.html" class="footer-link">Calculator</a>
+                    <a href="courses.html" class="footer-link">Courses</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script-calculator.js"></script>
+    <script>
+        // Simple theme changer for calculator page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', changeTheme);
+            }
+            
+            // Mobile menu
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navList = document.querySelector('.nav-list');
+            
+            if (mobileMenuBtn && navList) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navList.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('futaTheme') || 'navy';
+            document.body.setAttribute('data-theme', savedTheme);
+        });
+        
+        function changeTheme() {
+            const themes = ['navy', 'red', 'green', 'purple', 'yellow', 'pink'];
+            const currentTheme = document.body.getAttribute('data-theme') || 'navy';
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            
+            document.body.setAttribute('data-theme', themes[nextIndex]);
+            localStorage.setItem('futaTheme', themes[nextIndex]);
+        }
+    </script>
+</body>
+</html>

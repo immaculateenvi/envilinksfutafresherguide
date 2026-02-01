@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envilinks FUTA Fresher Guide</title>
+    <title>Envilinks FUTA Fresher Guide - Home</title>
     <link rel="icon" type="image/jpg" href="logo.jpg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,9 +21,9 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-list">
-                        <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#" class="nav-link" data-page="calculator"><i class="fas fa-calculator"></i> Screening Calculator</a></li>
-                        <li><a href="#" class="nav-link" data-page="courses"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
+                        <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Screening Calculator</a></li>
+                        <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
                     </ul>
                 </nav>
                 <div class="theme-switcher">
@@ -36,7 +36,7 @@
     </header>
 
     <main class="container">
-        <!-- Home Page -->
+        <!-- Home Page Content -->
         <section id="home" class="page active">
             <div class="hero">
                 <h2>Federal University of Technology Akure</h2>
@@ -49,11 +49,11 @@
                     </div>
                     <div class="stat">
                         <i class="fas fa-users"></i>
-                        <span>25,000+ Students</span>
+                        <span>31,000+ Students</span>
                     </div>
                     <div class="stat">
                         <i class="fas fa-school"></i>
-                        <span>13 Schools</span>
+                        <span>9 Schools</span>
                     </div>
                 </div>
             </div>
@@ -84,16 +84,16 @@
                             <div class="info-card">
                                 <h4><i class="fas fa-graduation-cap"></i> Academic Structure</h4>
                                 <ul>
-                                    <li><strong>Schools:</strong> 13</li>
-                                    <li><strong>Departments:</strong> 60+</li>
-                                    <li><strong>Special Centers:</strong> 5+</li>
-                                    <li><strong>Student Population:</strong> 25,000+</li>
+                                    <li><strong>Schools:</strong> 9</li>
+                                    <li><strong>Departments:</strong> 50+</li>
+                                    <li><strong>Special Centers:</strong> 3</li>
+                                    <li><strong>Student Population:</strong> 31,000+</li>
                                 </ul>
                             </div>
                             <div class="info-card">
                                 <h4><i class="fas fa-building"></i> Facilities</h4>
                                 <ul>
-                                    <li><strong>Campuses:</strong> 2 (Obanla, Obakekere)</li>
+                                    <li><strong>Campuses:</strong> 3 (Obanla, Obakekere, Ibule)</li>
                                     <li><strong>Library:</strong> Albert Ilemobade Library</li>
                                     <li><strong>Research Centers:</strong> Multiple specialized labs</li>
                                     <li><strong>Entrepreneurship Hub:</strong> Vocational training</li>
@@ -136,10 +136,6 @@
                                     <span>Acceptance Fee:</span>
                                     <strong>₦50,000</strong>
                                 </div>
-                                                                <div class="fee-item">
-                                    <span>School Fees:</span>
-                                    <strong>₦258,000</strong>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,7 +163,23 @@
                         <p>Meet the departmental cut-off marks</p>
                     </div>
                 </div>
-                <p>Use our Screening Calculator to estimate your screening score and check your eligibility for various courses.</p>
+                <p>Use our <a href="calculator.html">Screening Calculator</a> to estimate your screening score and check your eligibility for various courses.</p>
+            </div>
+
+            <div class="content-section">
+                <h3><i class="fas fa-external-link-alt"></i> Other Tools</h3>
+                <div class="tools-grid">
+                    <a href="calculator.html" class="tool-card">
+                        <i class="fas fa-calculator"></i>
+                        <h4>Screening Calculator</h4>
+                        <p>Calculate your FUTA screening aggregate score</p>
+                    </a>
+                    <a href="courses.html" class="tool-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Course Eligibility</h4>
+                        <p>Check which courses you're eligible for</p>
+                    </a>
+                </div>
             </div>
 
             <div class="whatsapp-section">
@@ -183,247 +195,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Screening Calculator Page -->
-        <section id="calculator" class="page">
-            <div class="hero">
-                <h2>Screening Score Calculator</h2>
-                <p>Calculate your FUTA screening aggregate using the official method</p>
-                <div class="score-display" id="score-display">
-                    <div class="score-item">
-                        <span>O'Level Score</span>
-                        <strong id="olevel-score">0.00</strong>
-                    </div>
-                    <div class="score-item">
-                        <span>JAMB Score</span>
-                        <strong id="jamb-score-display">0.00</strong>
-                    </div>
-                    <div class="score-item total">
-                        <span>Total Aggregate</span>
-                        <strong id="total-score">0.00</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h3><i class="fas fa-calculator"></i> How to Calculate Your Screening Result</h3>
-                <p>The FUTA screening score is calculated using your O'level results and JAMB score, using 2025 calculation of 75:25:</p>
-                
-                <div class="calculation-guide">
-                    <div class="guide-section">
-                        <h4><i class="fas fa-star"></i> O'level Calculation (25 points maximum)</h4>
-                        <p>Only 20 points can be attained from grades; remaining 5 points are decided by school/catchment</p>
-                        <div class="grade-points">
-                            <div class="grade-item">
-                                <span class="grade">A1</span>
-                                <span class="points">= 80 points</span>
-                            </div>
-                            <div class="grade-item">
-                                <span class="grade">B2</span>
-                                <span class="points">= 72 points</span>
-                            </div>
-                            <div class="grade-item">
-                                <span class="grade">B3</span>
-                                <span class="points">= 67 points</span>
-                            </div>
-                            <div class="grade-item">
-                                <span class="grade">C4</span>
-                                <span class="points">= 62 points</span>
-                            </div>
-                            <div class="grade-item">
-                                <span class="grade">C5</span>
-                                <span class="points">= 57 points</span>
-                            </div>
-                            <div class="grade-item">
-                                <span class="grade">C6</span>
-                                <span class="points">= 52 points</span>
-                            </div>
-                        </div>
-                        <p class="formula">Formula: Add points for 5 subjects → Divide by 5 → Divide by 100 → Multiply by 25</p>
-                    </div>
-                    
-                    <div class="guide-section">
-                        <h4><i class="fas fa-file-alt"></i> JAMB Calculation (75 points maximum)</h4>
-                        <p class="formula">Formula: (JAMB Score ÷ 400) × 75</p>
-                    </div>
-                    
-                    <div class="guide-section total-formula">
-                        <h4><i class="fas fa-sum"></i> Total Aggregate</h4>
-                        <p class="formula"><strong>Total = O'level Points + JAMB Points</strong></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h3><i class="fas fa-calculator"></i> Calculate Your Score</h3>
-                <form id="screening-form">
-                    <div class="form-group">
-                        <label><i class="fas fa-book"></i> Select Your Five Core O'level Subjects and Grades:</label>
-                        
-                        <div class="subjects-container">
-                            <div class="subject-input-group" data-id="1">
-                                <select class="subject-select" required>
-                                    <option value="">Select Subject</option>
-                                    <option value="English">English</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="Physics">Physics</option>
-                                    <option value="Chemistry">Chemistry</option>
-                                    <option value="Biology">Biology</option>
-                                    <option value="Economics">Economics</option>
-                                    <option value="Geography">Geography</option>
-                                    <option value="Further Mathematics">Further Mathematics</option>
-                                    <option value="Agricultural Science">Agricultural Science</option>
-                                </select>
-                                <select class="grade-select" required>
-                                    <option value="">Select Grade</option>
-                                    <option value="80">A1</option>
-                                    <option value="72">B2</option>
-                                    <option value="67">B3</option>
-                                    <option value="62">C4</option>
-                                    <option value="57">C5</option>
-                                    <option value="52">C6</option>
-                                </select>
-                                <button type="button" class="remove-subject" style="display: none;">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <button type="button" id="add-subject" class="add-subject-btn">
-                            <i class="fas fa-plus"></i> Add Subject
-                        </button>
-                        <small class="form-note">Note: You need exactly 5 subjects. Subjects with same name will be ignored.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="jamb-score"><i class="fas fa-file-alt"></i> JAMB Score (out of 400):</label>
-                        <div class="input-with-icon">
-                            <input type="number" id="jamb-score" min="0" max="400" required>
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">
-                            <i class="fas fa-calculator"></i> Calculate My Score
-                        </button>
-                        <button type="button" id="reset-form" class="btn-secondary">
-                            <i class="fas fa-redo"></i> Reset
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="result" class="result-box">
-                    <h4><i class="fas fa-chart-line"></i> Your Screening Result</h4>
-                    <div class="result-details">
-                        <div class="result-item">
-                            <span>O'Level Points</span>
-                            <strong id="o-level-result">0.00/25</strong>
-                        </div>
-                        <div class="result-item">
-                            <span>JAMB Points</span>
-                            <strong id="jamb-result">0.00/75</strong>
-                        </div>
-                        <div class="result-item total">
-                            <span>Total Aggregate</span>
-                            <strong id="total-result">0.00/100</strong>
-                        </div>
-                    </div>
-                    <div class="result-actions">
-                        <button id="use-for-courses" class="btn-success">
-                            <i class="fas fa-arrow-right"></i> Use for Course Eligibility
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Course Eligibility Page -->
-        <section id="courses" class="page">
-            <div class="hero">
-                <h2>Course Eligibility Checker</h2>
-                <p>Find out which FUTA courses you're eligible for based on your screening score and UTME subjects</p>
-                <p class="note"><i class="fas fa-info-circle"></i> Faculty = School in FUTA</p>
-            </div>
-
-            <div class="content-section">
-                <h3><i class="fas fa-search"></i> Check Your Eligibility</h3>
-                <p>Enter your screening aggregate score and select the subjects you took in UTME to see which courses you may be eligible for.</p>
-                <p class="note"><i class="fas fa-exclamation-triangle"></i> Based on the average used for 2024 and 2025 since FUTA does not release official cutoffs</p>
-                
-                <div class="eligibility-form">
-                    <div class="form-group">
-                        <label for="aggregate-score"><i class="fas fa-chart-bar"></i> Your Screening Aggregate Score:</label>
-                        <div class="input-with-icon">
-                            <input type="number" id="aggregate-score" min="0" max="100" step="0.01">
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label><i class="fas fa-book-open"></i> Select Your 4 UTME Subjects:</label>
-                        <div class="subjects-container utme-subjects">
-                            <div class="subject-input-group" data-id="utme1">
-                                <select class="utme-subject-select">
-                                    <option value="">Select Subject</option>
-                                    <option value="English">English</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="Physics">Physics</option>
-                                    <option value="Chemistry">Chemistry</option>
-                                    <option value="Biology">Biology</option>
-                                    <option value="Agricultural Science">Agricultural Science</option>
-                                    <option value="Geography">Geography</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" id="add-utme-subject" class="add-subject-btn">
-                            <i class="fas fa-plus"></i> Add UTME Subject
-                        </button>
-                        <small class="form-note">You must select exactly 4 subjects. Duplicate subjects will be ignored.</small>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button id="check-eligibility" class="btn-primary">
-                            <i class="fas fa-search"></i> Check Eligible Courses
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="eligible-courses" class="eligible-courses">
-                    <div class="results-header">
-                        <h3><i class="fas fa-trophy"></i> Courses You're Eligible For:</h3>
-                        <div class="results-count">
-                            <span id="eligible-count">0</span> courses found
-                        </div>
-                    </div>
-                    <div id="course-list" class="course-list"></div>
-                    <div id="no-courses" class="no-results">
-                        <i class="fas fa-search"></i>
-                        <h4>No courses found yet</h4>
-                        <p>Enter your score and select your UTME subjects to check eligibility</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <div class="section-header">
-                    <h3><i class="fas fa-list-alt"></i> FUTA Departmental Cut-off Marks</h3>
-                    <div class="tab-container">
-                        <button class="tab active" data-tab="all">All Courses</button>
-                        <button class="tab" data-tab="eligible">Eligible Only</button>
-                    </div>
-                </div>
-                
-                <div class="info-note">
-                    <p><i class="fas fa-info-circle"></i>The School of Electrical Systems Engineering (SESE) and School of Infrastructure Minerals and Manufacturing Engineering (SIMME) are formerly the School of Engineering and Engineering Technology (SEET).</p>
-                    <p><i class="fas fa-info-circle"></i> The College of Health Sciences (CHS) consists of School of Basic Medical Science (SBMS), School of Basic Clinical Science (SBCS) and School of Clinical Science (SCS).</p>
-                    <p><i class="fas fa-info-circle"></i> The School of Logistics and Innovation Technology (SLIT) was formerly called the School of Management Technology (SMAT).</p>
-                </div>
-                
-                <div id="all-courses" class="tab-content active"></div>
-                <div id="eligible-only" class="tab-content"></div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -431,18 +202,77 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <p>&copy; <span id="current-year"></span> Envilinks FUTA Guide | For Educational Purposes Only | Version 2.0</p>
-                    <p>Proudly created by <a href="https://eimc.vercel.app/" target="_blank">Envilinks Interconnectivity Media Concept</a></p>
-                    <p>Check out our main student oriented project that links to others <a href="https://naijatertiarysummary.vercel.app/" target="_blank">Naija Uni-Poly-College Guide</a></p>
+                    <p>Proudly created by <a href="https://eimc.vercel.app" target="_blank">Envilinks Interconnectivity Media Concept</a></p>
                 </div>
                 <div class="footer-links">
-                    <a href="#" class="footer-link" data-page="home">Home</a>
-                    <a href="#" class="footer-link" data-page="calculator">Calculator</a>
-                    <a href="#" class="footer-link" data-page="courses">Courses</a>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="calculator.html" class="footer-link">Calculator</a>
+                    <a href="courses.html" class="footer-link">Courses</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Page-specific script for home page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Setup expandable sections
+            const expandButtons = document.querySelectorAll('.expand-btn');
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    content.classList.toggle('active');
+                    
+                    if (content.classList.contains('active')) {
+                        icon.className = 'fas fa-chevron-up';
+                        this.setAttribute('aria-expanded', 'true');
+                    } else {
+                        icon.className = 'fas fa-chevron-down';
+                        this.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navList = document.querySelector('.nav-list');
+            
+            if (mobileMenuBtn && navList) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        navList.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', changeTheme);
+            }
+        });
+        
+        // Simple theme changer for home page
+        function changeTheme() {
+            const themes = ['navy', 'red', 'green', 'purple', 'yellow', 'pink'];
+            const currentTheme = document.body.getAttribute('data-theme') || 'navy';
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            
+            document.body.setAttribute('data-theme', themes[nextIndex]);
+            localStorage.setItem('futaTheme', themes[nextIndex]);
+        }
+    </script>
 </body>
 </html>
