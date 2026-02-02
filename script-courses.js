@@ -34,15 +34,15 @@ const coursesData = [
     { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Civil Engineering (CVE)", cutoff: 72.66, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🏗️" },
     { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Industrial and Production Engineering (IPE)", cutoff: 53.53, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🏭" },
     { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mechanical Engineering (MEE)", cutoff: 73.75, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "⚙️" },
-    { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mechatronics Engineering (MCE)", cutoff: 71.30, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🤖" },
     { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mining Engineering (MNE)", cutoff: 55.20, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "⛏️" },
     { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Metallurgical and Material Engineering (MME)", cutoff: 55.30, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🔥" },
     
-    // School of Electrical System Engineering (SESE) ⚡
+    // School of Electrical Systems Engineering (SESE) ⚡
     { school: "School of Electrical System Engineering (SESE)", name: "Biomedical Engineering", cutoff: 63.40, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🫀" },
     { school: "School of Electrical System Engineering (SESE)", name: "Computer Engineering", cutoff: 69.62, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "💾" },
     { school: "School of Electrical System Engineering (SESE)", name: "Electrical - Electronics Engineering (EEE)", cutoff: 74.37, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "⚡" },
     { school: "School of Electrical System Engineering (SESE)", name: "Information and Communication Engineering (ICE)", cutoff: 57.60, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "📡" },
+    { school: "School of Electrical System Engineering (SESE)", name: "Mechatronics Engineering (MCE)", cutoff: 71.30, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry"], emoji: "🤖" },
     
     // School of Earth and Mineral Science (SEMS) 🌍
     { school: "School of Earth and Mineral Science (SEMS)", name: "Applied Geology (AGY)", cutoff: 57.30, requiredSubjects: ["English", "Chemistry", "Physics", "Mathematics/Geography"], emoji: "🪨" },
