@@ -1,0 +1,21 @@
+{
+  "name": "Envilinks FUTA Fresher Guide",
+  "short_name": "FUTA Guide",
+  "description": "FUTA Screening Calculator and Course Eligibility Checker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#003366",
+  "theme_color": "#003366",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}

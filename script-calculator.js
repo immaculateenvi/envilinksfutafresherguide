@@ -1,6 +1,11 @@
 // Calculator page specific script
 document.addEventListener('DOMContentLoaded', function() {
     initializeCalculator();
+    checkOnlineStatus();
+    
+    // Listen for online/offline events
+    window.addEventListener('online', handleOnlineStatus);
+    window.addEventListener('offline', handleOnlineStatus);
 });
 
 function initializeCalculator() {
@@ -27,6 +32,9 @@ function initializeCalculator() {
     // Share buttons
     document.getElementById('share-whatsapp')?.addEventListener('click', shareOnWhatsApp);
     document.getElementById('copy-result')?.addEventListener('click', copyResults);
+    
+    // Load saved data
+    loadSavedCalculatorData();
 }
 
 function addSubject() {
@@ -83,6 +91,7 @@ function addSubject() {
     }
     
     updateRemoveButtonsVisibility();
+    saveCalculatorData();
 }
 
 function updateRemoveButtonsVisibility() {
@@ -142,8 +151,8 @@ function calculateScreeningScore(e) {
     document.getElementById('total-score').textContent = totalAggregate.toFixed(2);
     
     document.getElementById('o-level-result').textContent = oLevelPoints.toFixed(2) + '/25';
-    document.getElementById('jamb-result').textContent = jambPoints.toFixed(2) + '/70';
-    document.getElementById('total-result').textContent = totalAggregate.toFixed(2) + '/75';
+    document.getElementById('jamb-result').textContent = jambPoints.toFixed(2) + '/75';
+    document.getElementById('total-result').textContent = totalAggregate.toFixed(2) + '/100';
     
     document.getElementById('result').style.display = 'block';
     
@@ -155,6 +164,9 @@ function calculateScreeningScore(e) {
     useForCoursesLink.href = `courses.html?score=${totalAggregate.toFixed(2)}`;
     
     showNotification('Score calculated successfully!', 'success');
+    
+    // Save calculator data
+    saveCalculatorData();
     
     // Scroll to result
     document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -179,6 +191,7 @@ function resetScreeningForm() {
     document.getElementById('total-score').textContent = '0.00';
     
     showNotification('Form reset successfully', 'info');
+    saveCalculatorData();
 }
 
 function shareOnWhatsApp() {
@@ -186,7 +199,7 @@ function shareOnWhatsApp() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const message = `My FUTA Screening Score Results:%0A%0A📊 *O'Level Score:* ${oLevelScore}%0A📝 *JAMB Score:* ${jambScore}%0A🏆 *Total Aggregate:* ${totalScore}%0A%0ACalculated using Envilinks FUTA Fresher Guide Screening Calculator (https://envilinksfutafresherguide.vercel.app/calculator.html)`;
+    const message = `My FUTA Screening Score Results:%0A%0A📊 *O'Level Score:* ${oLevelScore}%0A📝 *JAMB Score:* ${jambScore}%0A🏆 *Total Aggregate:* ${totalScore}%0A%0ACalculated using Envilinks FUTA Fresher Guide Screening Calculator https://envilinksfutafresherguide.vercel.app/calculator.html`;
     
     window.open(`https://wa.me/?text=${message}`, '_blank');
 }
@@ -196,7 +209,8 @@ function copyResults() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide Screening Calculator (https://envilinksfutafresherguide.vercel.app/calculator.html) `;
+    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide Screening Calculator https://envilinksfutafresherguide.vercel.app/calculator.html)
+    `;
     
     navigator.clipboard.writeText(text)
         .then(() => showNotification('Results copied to clipboard!', 'success'))
@@ -282,5 +296,89 @@ function getNotificationIcon(type) {
         case 'warning': return 'exclamation-triangle';
         case 'error': return 'times-circle';
         default: return 'info-circle';
+    }
+}
+
+function saveCalculatorData() {
+    const data = {
+        jambScore: document.getElementById('jamb-score').value,
+        subjects: [],
+        grades: [],
+        timestamp: new Date().getTime()
+    };
+    
+    const subjectGroups = document.querySelectorAll('.subject-input-group');
+    subjectGroups.forEach(group => {
+        const subjectSelect = group.querySelector('.subject-select');
+        const gradeSelect = group.querySelector('.grade-select');
+        
+        if (subjectSelect && gradeSelect) {
+            data.subjects.push(subjectSelect.value);
+            data.grades.push(gradeSelect.value);
+        }
+    });
+    
+    localStorage.setItem('futaCalculatorData', JSON.stringify(data));
+}
+
+function loadSavedCalculatorData() {
+    const savedData = localStorage.getItem('futaCalculatorData');
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        
+        if (data.jambScore) {
+            document.getElementById('jamb-score').value = data.jambScore;
+        }
+        
+        if (data.subjects && data.subjects.length > 0) {
+            const subjectsContainer = document.getElementById('subjects-container');
+            // Clear existing subjects
+            while (subjectsContainer.children.length > 0) {
+                subjectsContainer.lastChild.remove();
+            }
+            
+            // Add saved subjects
+            data.subjects.forEach((subject, index) => {
+                if (subject && data.grades[index]) {
+                    addSubject();
+                    const subjectSelect = document.querySelectorAll('.subject-select')[index];
+                    const gradeSelect = document.querySelectorAll('.grade-select')[index];
+                    
+                    if (subjectSelect) subjectSelect.value = subject;
+                    if (gradeSelect) gradeSelect.value = data.grades[index];
+                }
+            });
+            
+            // Ensure we have 5 subjects
+            while (subjectsContainer.children.length < 5) {
+                addSubject();
+            }
+        }
+    }
+}
+
+function checkOnlineStatus() {
+    const offlineStatus = document.getElementById('offline-status');
+    if (!offlineStatus) {
+        const offlineHTML = `
+            <div id="offline-status" class="offline-status">
+                <i class="fas fa-wifi-slash"></i>
+                <span>You are offline. Using saved data.</span>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', offlineHTML);
+    }
+    
+    handleOnlineStatus();
+}
+
+function handleOnlineStatus() {
+    const offlineStatus = document.getElementById('offline-status');
+    if (offlineStatus) {
+        if (navigator.onLine) {
+            offlineStatus.style.display = 'none';
+        } else {
+            offlineStatus.style.display = 'flex';
+        }
     }
 }

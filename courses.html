@@ -7,6 +7,7 @@
     <link rel="icon" type="image/jpg" href="logo.jpg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -79,40 +80,56 @@
                         </button>
                     </div>
                 </div>
-                
-                <div id="eligible-courses" class="eligible-courses" style="display: none;">
-                    <div class="results-header">
-                        <h3><i class="fas fa-trophy"></i> Courses You're Eligible For:</h3>
-                        <div class="results-count">
-                            <span id="eligible-count">0</span> courses found
-                        </div>
-                    </div>
-                    <div id="course-list" class="course-list"></div>
-                    <div id="no-courses" class="no-results" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <h4>No courses found yet</h4>
-                        <p>Enter your score and select your UTME subjects to check eligibility</p>
-                    </div>
+            </div>
+
+            <div class="content-section" id="eligible-courses" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-trophy"></i> Courses You're Eligible For</h3>
                 </div>
+                <div id="eligible-courses-list" class="course-list"></div>
             </div>
 
             <div class="content-section">
                 <div class="section-header">
-                    <h3><i class="fas fa-list-alt"></i> FUTA Departmental Cut-off Marks</h3>
+                    <h3><i class="fas fa-list-alt"></i> All FUTA Courses with Eligibility</h3>
                     <div class="tab-container">
-                        <button class="tab active" data-tab="all">All Courses</button>
-                        <button class="tab" data-tab="eligible">Eligible Only</button>
+                        <button class="tab active" data-tab="all-courses">All Courses</button>
+                        <button class="tab" data-tab="legend">Legend</button>
                     </div>
                 </div>
                 
-                <div class="info-note">
-                    <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> The School of Electrical Systems Engineering (SESE) and School of Infrastructure Minerals and Manufacturing Engineering (SIMME) are formerly the School of Engineering and Engineering Technology (SEET).</p>
-                    <p><i class="fas fa-info-circle"></i> The College of Health Sciences (CHS) consists of School of Basic Medical Science (SBMS), School of Basic Clinical Science (SBCS) and School of Clinical Science (SCS).</p>
-                    <p><i class="fas fa-info-circle"></i> The School of Logistics and Innovation Technology (SLIT) was formerly called the School of Management Technology (SMAT).</p>
+                <div id="legend-content" class="tab-content" style="display: none;">
+                    <div class="info-note">
+                        <h4><i class="fas fa-info-circle"></i> Eligibility Color Codes:</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <span class="eligibility-badge eligibility-green">High Eligibility</span>
+                                <span>5+ points above cutoff</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="eligibility-badge eligibility-yellow">Moderate Eligibility</span>
+                                <span>2-5 points above cutoff</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="eligibility-badge eligibility-yellow">Low Eligibility</span>
+                                <span>0-2 points above cutoff</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="eligibility-badge eligibility-red">Not Eligible</span>
+                                <span>Below cutoff or wrong subjects</span>
+                            </div>
+                        </div>
+                        
+                        <h4><i class="fas fa-info-circle"></i> Important Notes:</h4>
+                        <p><strong>Note:</strong> The School of Electrical Systems Engineering (SESE) and School of Infrastructure Minerals and Manufacturing Engineering (SIMME) are formerly the School of Engineering and Engineering Technology (SEET).</p>
+                        <p><strong>Note:</strong> The College of Health Sciences (CHS) consists of School of Basic Medical Science (SBMS), School of Basic Clinical Science (SBCS) and School of Clinical Science (SCS).</p>
+                        <p><strong>Note:</strong> The School of Logistics and Innovation Technology (SLIT) was formerly called the School of Management Technology (SMAT).</p>
+                    </div>
                 </div>
                 
-                <div id="all-courses" class="tab-content active"></div>
-                <div id="eligible-only" class="tab-content"></div>
+                <div id="all-courses" class="tab-content active">
+                    <!-- All courses with eligibility percentages will be displayed here -->
+                </div>
             </div>
             
             <div class="content-section">
@@ -210,10 +227,38 @@
                     this.classList.add('active');
                     
                     // Show corresponding content
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    document.getElementById(tabId === 'all' ? 'all-courses' : 'eligible-only').classList.add('active');
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    });
+                    
+                    if (tabId === 'all-courses') {
+                        document.getElementById('all-courses').style.display = 'block';
+                        document.getElementById('all-courses').classList.add('active');
+                    } else if (tabId === 'legend') {
+                        document.getElementById('legend-content').style.display = 'block';
+                        document.getElementById('legend-content').classList.add('active');
+                    }
                 });
             });
+            
+            // Register service worker for offline functionality
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            }
+            
+            // Check online status
+            checkOnlineStatus();
+            
+            // Listen for online/offline events
+            window.addEventListener('online', handleOnlineStatus);
+            window.addEventListener('offline', handleOnlineStatus);
         });
         
         function changeTheme() {
@@ -225,6 +270,35 @@
             document.body.setAttribute('data-theme', themes[nextIndex]);
             localStorage.setItem('futaTheme', themes[nextIndex]);
         }
+        
+        function checkOnlineStatus() {
+            const offlineStatus = document.getElementById('offline-status');
+            if (!offlineStatus) {
+                const offlineHTML = `
+                    <div id="offline-status" class="offline-status">
+                        <i class="fas fa-wifi-slash"></i>
+                        <span>You are offline. Using saved data.</span>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', offlineHTML);
+            }
+            
+            handleOnlineStatus();
+        }
+        
+        function handleOnlineStatus() {
+            const offlineStatus = document.getElementById('offline-status');
+            if (offlineStatus) {
+                if (navigator.onLine) {
+                    offlineStatus.style.display = 'none';
+                } else {
+                    offlineStatus.style.display = 'flex';
+                }
+            }
+        }
+        
+        // Make showCourseDetails function available globally
+        window.showCourseDetails = showCourseDetails;
     </script>
 </body>
 </html>

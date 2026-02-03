@@ -329,6 +329,35 @@ main {
     gap: 10px;
 }
 
+/* Percentage Indicator */
+.percentage-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.percentage-red {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.percentage-yellow {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #856404;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.percentage-green {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #155724;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
 /* Expandable Sections */
 .expandable-section {
     margin: 1.5rem 0;
@@ -863,6 +892,7 @@ button {
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .course-card::before {
@@ -921,6 +951,87 @@ button {
     opacity: 0.7;
 }
 
+/* Short Code Display */
+.short-code-display {
+    font-family: 'Courier New', monospace;
+    background: var(--gray-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-left: 8px;
+}
+
+/* Course Detail Modal */
+.course-detail-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.course-detail-content {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.course-detail-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-detail-body {
+    padding: 1.5rem;
+}
+
+.course-detail-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.course-detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.course-detail-item strong {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.course-detail-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
 /* School Section */
 .school-section {
     margin-bottom: 2.5rem;
@@ -969,6 +1080,95 @@ button {
 .no-results h4 {
     color: var(--gray);
     margin-bottom: 0.5rem;
+}
+
+/* Tools Grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.tool-card {
+    display: block;
+    background: var(--gray-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--dark);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.tool-card:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-5px);
+}
+
+.tool-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.tool-card:hover i {
+    color: var(--white);
+}
+
+.tool-card h4 {
+    margin-bottom: 0.5rem;
+}
+
+/* Share Options */
+.share-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    padding: 12px 24px;
+    background: var(--gray-light);
+    color: var(--dark);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.share-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Offline Status */
+.offline-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: var(--warning);
+    color: #856404;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Footer */
@@ -1097,6 +1297,10 @@ footer {
     .footer-links {
         justify-content: center;
     }
+    
+    .course-detail-content {
+        width: 95%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1145,4 +1349,200 @@ footer {
     .subject-input-group .remove-subject {
         width: 100%;
     }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Eligibility Percentage Badges */
+.eligibility-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.eligibility-red {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.eligibility-yellow {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #856404;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.eligibility-green {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #155724;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+/* Course Code Display */
+.course-code {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.course-code:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Course Details Popup */
+.course-details-popup {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-left: 4px solid var(--primary);
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+.course-details-popup.active {
+    display: block;
+}
+
+.course-details-item {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.course-details-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.course-details-item strong {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+/* Eligibility Grid */
+.eligibility-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .eligibility-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Section Toggle */
+.section-toggle {
+    display: flex;
+    gap: 10px;
+    margin: 1.5rem 0;
+    background: var(--gray-light);
+    padding: 5px;
+    border-radius: var(--border-radius);
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    border-radius: calc(var(--border-radius) - 5px);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.toggle-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Course Status Indicators */
+.course-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-eligible {
+    background: var(--success);
+}
+
+.status-moderate {
+    background: var(--warning);
+}
+
+.status-ineligible {
+    background: var(--danger);
+}
+
+/* Percentage Display */
+.percentage-display {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 5px;
+}
+
+/* Eligibility Filter */
+.eligibility-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: var(--gray-light);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.filter-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-left: 5px;
 }

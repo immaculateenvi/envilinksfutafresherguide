@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envilinks FUTA Fresher Guide</title>
+    <link rel="icon" type="image/jpg" href="logo.jpg">
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #004080;
+            --accent: #25D366;
+            --light: #f5f5f5;
+            --dark: #333;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .hero {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .whatsapp-section {
+            background-color: var(--accent);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .whatsapp-section a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #128C7E;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .whatsapp-section a:hover {
+            background-color: #0e6e5e;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .subject-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .subject-row select {
+            flex: 1;
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #00264d;
+        }
+        
+        .result-box {
+            background-color: #e6f2ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .eligible-courses {
+            margin-top: 2rem;
+        }
+        
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .course-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .course-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .course-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .course-card .cutoff {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+        
+        .course-card.eligible {
+            border-left: 4px solid var(--success);
+        }
+        
+        .course-card.ineligible {
+            border-left: 4px solid var(--danger);
+            opacity: 0.7;
+        }
+        
+        .school-section {
+            margin-bottom: 2rem;
+        }
+        
+        .school-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #e6f2ff;
+            border-radius: 4px;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .subject-row {
+                flex-direction: column;
+            }
+        }
+        #themeButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Changed from top to bottom */
+  padding: 10px 15px;
+  background: #001f3f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+    </style>
+</head>
+<script>
+// 
+</script>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Envilinks FUTA Guide</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="calculator">Screening Calculator</a></li>
+                        <li><a href="#" class="nav-link" data-page="courses">Course Eligibility</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h2>Federal University of Technology Akure</h2>
+                <p>(Technology for Self Reliance )<p></p>Your gateway to quality technological education in Nigeria</p>
+            </div>
+
+            <div class="content-section">
+                <h3>About FUTA</h3>
+                <p>The Federal University of Technology Akure (FUTA) is a leading institution of higher learning in Nigeria, established in 1981. The university is committed to providing world-class education in technology, science, and engineering disciplines.</p><p></p>
+                <br>
+                <p>FUTA offers a wide range of undergraduate and postgraduate programs across various schools including Engineering, Sciences, Agriculture, Environmental Technology, and more. The university is known for its excellent academic standards, research output, and state-of-the-art facilities.</p>
+                <br>
+                <p>As a prospective student, this portal will help you calculate your screening score and determine which courses you may be eligible for based on your academic performance.</p>
+                <br>
+                <p>The Federal University of Technology Akure (FUTA) was established in 1981 and is one of Nigeria’s top technological institutions. It offers over 50 departments across 9 schools, with a student population exceeding 31,000.</p>
+                  <br>
+                 <p>Here’s a detailed breakdown of key facts about FUTA:</p>
+
+                 <p>🏛️ General Overview
+- Established: 1981 by the civilian government of President Shehu Shagari
+- Location: Akure, Ondo State, Nigeria
+- Motto: Technology for Self Reliance
+- Type: Public, Federal Government-owned
+- Vice-Chancellor: Prof. Adenike Oladiji</p>
+                 <br>
+                 <p>🧪 Academic Structure
+- Number of Schools (Faculties): 9
+  - Examples include the School of Engineering and Engineering Technology (SEET), School of Environmental Technology (SET), School of Computing (SOC), and School of Earth and Mineral Sciences (SEMS)
+- Departments:Over 50 departments across these schools⁾
+- Special Centers: Includes the Centre for Space Research and Applications, Centre for Entrepreneurship, and Open Distance Learning Centre</p>
+               <br>
+               <p>🏗️ Facilities
+- Campuses: Obanla, Obakekere, and Ibule campuses
+- Research Infrastructure: Well-equipped laboratories, ICT centers, and specialized research institutes
+- Library: Albert Ilemobade Library with digital and physical resources
+- Entrepreneurship Hub: Offers training in vocational and business skills </p>
+               <br>
+               <p>🎓 Student Population & Competitiveness
+- Total Students: Over 31,000
+  - Undergraduates: ~20,099
+  - Postgraduates: ~10,979⁽¹⁾
+- Annual Intake: Estimated between 4,000–6,000 new students annually, depending on program capacity and JAMB quotas
+- Graduates Annually:Varies, but typically aligns with intake after 4–5 years
+- Competitiveness: Highly competitive, especially for engineering, computer science, and architecture programs. FUTA is consistently ranked among the top 10 universities in Nigeria</p>
+             <br>
+             <p>🏘️Accomodation
+- Hostels: Multiple on-campus hostels for male and female students like Adeniyi, Jibowu, CMS.....
+  - Hostels are allocated based on availability and academic level
+  - Facilities include electricity, water supply, and security
+- Off-Campus Housing: Widely available in nearby communities like Obakekere and FUTA North Gate, South gate anr West Gate</p>
+             <br>
+FUTA’s reputation for academic rigor, innovation, and technological advancement makes it a top choice for science and engineering students in Nigeria.
+
+Would you like a visual campus map or a breakdown of each school and its departments?
+             <br><p> Click on the links below to access Academic Resources and other info aboit FUTA :
+ <a href="https://drive.google.com/drive/folders/1Tozhb5-DCASDDTrU9ifXAmaSPT4muci7" target="_blank">Access Academic Resources 1</a>
+ <a href="https://drive.google.com/drive/folders/1TpcuoNxW7GbAXiDFFKHjm7aX84RphLxf?usp=drive_link" target="_blank">Access Academic Resources 2</a>
+ <a href="https://t.me/futalibary" target="_blank">Join Telegram Academic Resources Community</a>
+ <a href="http://www.youtube.com/playlist?list=PLec_thd-Rs6vHCj_4ffP28GYYF_RtfHHR" target="_blank">Access MEE 101 Videos</a>
+ <a href="https://en.wikipedia.org/wiki/Federal_University_of_Technology_Akure" target="_blank">Learn More About FUTA</a>
+ <a href="https://futa.edu.ng" target="_blank">FUTA Website</a> <br>
+ Last year (2025/2026) School fees
+ <img src="Fees.jpg" alt="Description of image" width="300" height="200">
+ <p>
+ Application fee : ₦2,000 Acceptance: ₦50,000 </p>
+</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Admission Process</h3>
+                <p>The admission process at FUTA involves several steps:</p>
+                <ul>
+                    <li>Meeting the O'level requirements (5 credits including English and Mathematics)</li>
+                    <li>Scoring above the UTME cut-off mark</li>
+                    <li>Participating in the Post-UTME screening exercise</li>
+                    <li>Meeting the departmental cut-off marks</li>
+                </ul>
+                <p>Use our Screening Calculator to estimate your screening score and check your eligibility for various courses.</p>
+            </div>
+
+            <div class="whatsapp-section">
+                <h3>Join Our WhatsApp Community</h3>
+                <p>Connect with other FUTA aspirants, get updates, and ask questions</p>
+                <a href="https://chat.whatsapp.com/JvrXzPuUL3wAyAmjDpeouu?mode=wwt" target="_blank">Join WhatsApp Group</a>
+                <p><a href="https://wa.me/2348142442012" target="_blank">Message Admin Envilinks</a
+            </div>
+        </section>
+
+        <!-- Screening Calculator Page -->
+        <section id="calculator" class="page">
+            <div class="hero">
+                <h2>Screening Score Calculator</h2>
+                <p>Calculate your FUTA screening aggregate using the official method</p>
+            </div>
+
+            <div class="content-section">
+                <h3>How to Calculate Your Screening Result</h3>
+                <p>The FUTA screening score is calculated using your O'level results and JAMB score, using 2025 calculation of 75:25:</p>
+                
+                <h4>O'level Calculation (25 points maximum) Although even with 5 A1, Only 20 points is attained, remaing 5 is decided by school / catchment</h4>
+                <ul>
+                    <li>A1 = 80 points</li>
+                    <li>B2 = 72 points</li>
+                    <li>B3 = 67 points</li>
+                    <li>C4 = 62 points</li>
+                    <li>C5 = 57 points</li>
+                    <li>C6 = 52 points</li>
+                </ul>
+                <p>Add up the points for your five core subjects, divide by 5, then divide by 100 and multiply by 25.</p>
+                
+                <h4>JAMB Calculation (75 points maximum)</h4>
+                <p>Divide your JAMB score by 400 and multiply by 75.</p>
+                
+                <p><strong>Total Aggregate = O'level Points + JAMB Points</strong></p>
+            </div>
+
+            <div class="content-section">
+                <h3>Calculate Your Score</h3>
+                <form id="screening-form">
+                    <div class="form-group">
+                        <label>Select Your Five Core O'level Subjects and Grades:</label>
+                        
+                        <div class="subject-row">
+                            <select id="subject1" required>
+                                <option value="">Select Subject</option>
+                                <option value="English">English</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                            </select>
+                            <select id="grade1" required>
+                                <option value="">Select Grade</option>
+                                <option value="80">A1</option>
+                                <option value="72">B2</option>
+                                <option value="67">B3</option>
+                                <option value="62">C4</option>
+                                <option value="57">C5</option>
+                                <option value="52">C6</option>
+                            </select>
+                        </div>
+                        
+                        <div class="subject-row">
+                            <select id="subject2" required>
+                                <option value="">Select Subject</option>
+                                <option value="English">English</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                            </select>
+                            <select id="grade2" required>
+                                <option value="">Select Grade</option>
+                                <option value="80">A1</option>
+                                <option value="72">B2</option>
+                                <option value="67">B3</option>
+                                <option value="62">C4</option>
+                                <option value="57">C5</option>
+                                <option value="52">C6</option>
+                            </select>
+                        </div>
+                        
+                        <div class="subject-row">
+                            <select id="subject3" required>
+                                <option value="">Select Subject</option>
+                                <option value="English">English</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                            </select>
+                            <select id="grade3" required>
+                                <option value="">Select Grade</option>
+                                <option value="80">A1</option>
+                                <option value="72">B2</option>
+                                <option value="67">B3</option>
+                                <option value="62">C4</option>
+                                <option value="57">C5</option>
+                                <option value="52">C6</option>
+                            </select>
+                        </div>
+                        
+                        <div class="subject-row">
+                            <select id="subject4" required>
+                                <option value="">Select Subject</option>
+                                <option value="English">English</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                            </select>
+                            <select id="grade4" required>
+                                <option value="">Select Grade</option>
+                                <option value="80">A1</option>
+                                <option value="72">B2</option>
+                                <option value="67">B3</option>
+                                <option value="62">C4</option>
+                                <option value="57">C5</option>
+                                <option value="52">C6</option>
+                            </select>
+                        </div>
+                        
+                        <div class="subject-row">
+                            <select id="subject5" required>
+                                <option value="">Select Subject</option>
+                                <option value="English">English</option>
+                               <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Further Mathematics">Further Mathematics</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                            </select>
+                            <select id="grade5" required>
+                                <option value="">Select Grade</option>
+                                <option value="80">A1</option>
+                                <option value="72">B2</option>
+                                <option value="67">B3</option>
+                                <option value="62">C4</option>
+                                <option value="57">C5</option>
+                                <option value="52">C6</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jamb-score">JAMB Score (out of 400):</label>
+                        <input type="number" id="jamb-score" min="0" max="400" required>
+                    </div>
+                    
+                    <button type="submit">Calculate My Score</button>
+                </form>
+                
+                <div id="result" class="result-box" style="display: none;">
+                    <h4>Your Screening Result</h4>
+                    <p id="o-level-result"></p>
+                    <p id="jamb-result"></p>
+                    <p id="total-result"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Eligibility Page -->
+        <section id="courses" class="page">
+            <div class="hero">
+                <h2>Course Eligibility Checker</h2>
+                <p>Find out which FUTA courses you're eligible for based on your screening score and UTME subjects (Faculty = School in FUTA)</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Check Your Eligibility based on the average used for 2024 and 2025 since FUTA does not release cutoffs</h3>
+                <p>Enter your screening aggregate score and select the subjects you took in UTME to see which courses you may be eligible for.</p>
+                
+                <div class="form-group">
+                    <label for="aggregate-score">Your Screening Aggregate Score:</label>
+                    <input type="number" id="aggregate-score" min="0" max="100" step="0.01">
+                </div>
+                
+                <div class="form-group">
+                    <label>Select Your 4 UTME Subjects:</label>
+                    <div class="subject-row">
+                        <select id="utme-subject1">
+                            <option value="">Select Subject</option>
+                            <option value="English">English</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Agricultural Science">Agricultural Science</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                        <select id="utme-subject2">
+                            <option value="">Select Subject</option>
+                            <option value="English">English</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Agricultural Science">Agricultural Science</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                    </div>
+                    <div class="subject-row">
+                        <select id="utme-subject3">
+                            <option value="">Select Subject</option>
+                            <option value="English">English</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Agricultural Science">Agricultural Science</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                        <select id="utme-subject4">
+                            <option value="">Select Subject</option>
+                            <option value="English">English</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Agricultural Science">Agricultural Science</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button id="check-eligibility">Check Eligible Courses</button>
+                
+                <div id="eligible-courses" class="eligible-courses" style="display: none;">
+                    <h3>Courses You're Eligible For:</h3>
+                    <div id="course-list" class="course-list"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>FUTA Departmental Cut-off Marks</h3>
+                <p> School of Electrical Systems Engineering (SESE) and School of Infrastructure Minerals and Manufacturing Engineering (SIMME) are formerly the School of Engineering and Engineering Technology (SEET) and both are referred to as SEET in some situations. </p>
+                <p>The School of Basic Medical Science (SBMS), School of Basic Clinical Science (SBCS) and the School of Clinical Science (SCS) are collectively called the College of Health Sciences (CHS) which is controlled by a Provost </p>
+                <p>The School of Logistics and Innovation Technology was formerly called the School of Management Technology (SMAT)</p>
+                <div class="tab-container">
+                    <div class="tab active" data-tab="all">All Courses</div>
+                    <div class="tab" data-tab="eligible">Eligible Only</div>
+                </div>
+                <div id="all-courses" class="tab-content active"></div>
+                <div id="eligible-only" class="tab-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Envilinks FUTA Guide | For Educational Purposes Only | Version 1.2 | Proudly created by                 <a href="https://eimc.vercel.app" target="_blank"> Envilinks Interconnectivity Media Concept</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show selected page
+                const pageId = this.getAttribute('data-page');
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(pageId).classList.add('active');
+                
+                // If going to courses page, pre-fill with stored aggregate if available
+                if (pageId === 'courses') {
+                    const storedAggregate = localStorage.getItem('futaAggregate');
+                    if (storedAggregate) {
+                        document.getElementById('aggregate-score').value = storedAggregate;
+                    }
+                }
+            });
+        });
+
+        // Tab functionality for courses page
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const tabId = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                if (tabId === 'all') {
+                    document.getElementById('all-courses').classList.add('active');
+                } else {
+                    document.getElementById('eligible-only').classList.add('active');
+                }
+            });
+        });
+
+        // Screening Calculator functionality
+        document.getElementById('screening-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get O'level grades
+            const grade1 = parseInt(document.getElementById('grade1').value);
+            const grade2 = parseInt(document.getElementById('grade2').value);
+            const grade3 = parseInt(document.getElementById('grade3').value);
+            const grade4 = parseInt(document.getElementById('grade4').value);
+            const grade5 = parseInt(document.getElementById('grade5').value);
+            
+            // Calculate O'level points
+            const oLevelTotal = grade1 + grade2 + grade3 + grade4 + grade5;
+            const oLevelAverage = oLevelTotal / 5;
+            const oLevelPoints = (oLevelAverage / 100) * 25;
+            
+            // Get JAMB score and calculate points
+            const jambScore = parseInt(document.getElementById('jamb-score').value);
+            const jambPoints = (jambScore / 400) * 75;
+            
+            // Calculate total aggregate
+            const totalAggregate = oLevelPoints + jambPoints;
+            
+            // Display results
+            document.getElementById('o-level-result').textContent = `O'Level Points: ${oLevelPoints.toFixed(2)}/30`;
+            document.getElementById('jamb-result').textContent = `JAMB Points: ${jambPoints.toFixed(2)}/70`;
+            document.getElementById('total-result').textContent = `Total Aggregate: ${totalAggregate.toFixed(2)}/100`;
+            
+            document.getElementById('result').style.display = 'block';
+            
+            // Store the result for use in the courses page
+            localStorage.setItem('futaAggregate', totalAggregate.toFixed(2));
+        });
+
+        // Course eligibility data with required subjects
+        const coursesData = [
+            // School of Agriculture and Agricultural Technology (SAAT)
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Agricultural Extension And Communication Technology (AEC)", cutoff: 47.81, requiredSubjects: ["Biology/Agricultural Science"] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Agricultural Resources Economics (ARE)", cutoff: 47.50, requiredSubjects: ["Biology/Agricultural Science"] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Animal and Production Health (APH)", cutoff: 55.52, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Crop Soil and Pest Management (CSP)", cutoff: 48.2, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Ecotourism and Wildlife Management (EWM)", cutoff: 47.70, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Fisheries and Aquaculture Technology (FAT)", cutoff: 47.50, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Food Science And Technology (FST)", cutoff: 58.12, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Forestry and Wood Technology (FWT)", cutoff: 47.5, requiredSubjects: [] },
+            { school: "School of Agriculture and Agricultural Technology (SAAT)", name: "Nutrition and Dietetics (NTD)", cutoff: 55.70, requiredSubjects: ["Biology/Agricultural Science"] },
+            
+            // College of Health and Health Sciences
+            // School of Basic Medical Science (SBMS)
+            { school: "School of Basic Medical Science (SBMS)", name: "Anatomy (ANY)", cutoff: 60.40, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Science (SBMS)", name: "Physiology (PHS)", cutoff: 57.26, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Science (SBMS)", name: "Nursing (NSC)", cutoff: 75, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Medical Science (SBMS)", name: "Public Health (PUH)", cutoff: 65, requiredSubjects: ["Biology"] },
+
+          // School of Basic Clinical Science (SBCS)
+            { school: "School of Basic Clinical Science (SBCS)", name: "Biomedical Technology (BIM)", cutoff: 61.66, requiredSubjects: ["Biology"] },
+            { school: "School of Basic Clinical Science (SBCS)", name: "Medical Laboratory Science (MLS)", cutoff: 67.28, requiredSubjects: ["Biology"] },
+            
+          // School of Clinical Science (SCS)
+            { school: "School of Clinical Science (SCS)", name: "Medicine and Surgery (MBBS)", cutoff: 78.25, requiredSubjects: ["Biology"] },
+
+            
+            // School of Computing (SOC)
+            { school: "School of Computing (SOC)", name: "Computer Science (CSC)", cutoff: 69.12, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Cyber Security (CYS)", cutoff: 63.75, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Information System (IFS)", cutoff: 63.11, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Information Technology (IFT)", cutoff: 64.23, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Software Engineering (SEN)", cutoff: 70.38, requiredSubjects: ["Mathematics"] },
+            { school: "School of Computing (SOC)", name: "Data Science (DTS)", cutoff: 65.38, requiredSubjects: ["Mathematics"] },
+            
+            // School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Agricultural Engineering (AGE)", cutoff: 56.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Chemical Engineering (CEE)", cutoff: 65.21, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Civil Engineering (CVE)", cutoff: 72.66, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Industrial and Production Engineering (IPE)", cutoff: 53.53, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mechanical Engineering (MEE)", cutoff: 73.75, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mechatronics Engineering (MCE)", cutoff: 71.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Mining Engineering (MNE)", cutoff: 55.20, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Infrastructure,Minerals and Manufacturing Engineering (SIMME)", name: "Metallurgical Engineering (MME)", cutoff: 55.30, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            
+             // School of Electrical System  Engineering (SESE)  
+            { school: "School of Electrical System  Engineering (SESE) ", name: "Biomedical Engineering", cutoff: 63.40, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electrical System  Engineering (SESE) ", name: "Computer Engineering", cutoff: 69.62, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electrical System  Engineering (SESE) ", name: "Electrical - Electronics Engineering (EEE)", cutoff: 74.37, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electrical System  Engineering (SESE) ", name: "Information and Communication Engineering (ICE)", cutoff: 57.60, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            { school: "School of Electrical System  Engineering (SESE) ", name: "Mechatronics  Engineering (MCE)", cutoff: 75, requiredSubjects: ["Mathematics", "English", "Physics", "Chemistry"] },
+            
+            // School of Earth and Mineral Science (SEMS)
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Applied Geology (AGY)", cutoff: 57.30, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Applied Geophysics (AGP)", cutoff: 56.66, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Marine Science And Technology (MST)", cutoff: 51.44, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Metrology And Climate Science (MCS)", cutoff: 51.70, requiredSubjects: ["Geography"] },
+            { school: "School of Earth and Mineral Science (SEMS)", name: "Remote Sensing And Geoinformatics (RSG)", cutoff: 51.10, requiredSubjects: ["Geography"] },
+            
+            // School of Environmental Technology (SET)
+            { school: "School of Environmental Technology (SET)", name: "Architecture (ARC)", cutoff: 72.90, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Building Technology (BDG)", cutoff: 57.20, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Estate Management (ESM)", cutoff: 48.30, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Industrial Design (IDD)", cutoff: 53.25, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Quantity Survey (QSV)", cutoff: 57.60, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Survey And Geo-informatics (SVG)", cutoff: 64.25, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Textile Design Technology (TDT)", cutoff: 52.87, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Urban And Regional Planning (URP)", cutoff: 52.90, requiredSubjects: ["Geography"] },
+            { school: "School of Environmental Technology (SET)", name: "Environmental Management (ENM)", cutoff: 50.00, requiredSubjects: ["Geography"] },
+            
+            // School of Logistics and Innovation Technology (SLIT)
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Business Information Technology (BIT)", cutoff: 50.00, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Business Management Technology (BMT)", cutoff: 50.00, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Entrepreneurship Management Technology (ENT)", cutoff: 51.66, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Logistics And Transport Technology (LTT)", cutoff: 55.60, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Project Management Technology (PMT)", cutoff: 56.40, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Security & Investment Management Technology (SIMT)", cutoff: 49.50, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Financial Technology (FIT)", cutoff: 49.50, requiredSubjects: [] },
+            { school: "School of Logistics and Innovation Technology (SLIT)", name: "Procurement Management Technology (PMT)", cutoff: 49.50, requiredSubjects: [] },
+            
+            // School of Life Sciences (SLS)
+            { school: "School of Life Sciences (SLS)", name: "Biochemistry (BCH)", cutoff: 64.33, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Biology (BIO)", cutoff: 52.62, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Biotechnology (BTH)", cutoff: 58.43, requiredSubjects: ["Biology"] },
+            { school: "School of Life Sciences (SLS)", name: "Microbiology (MCB)", cutoff: 64.30, requiredSubjects: ["Biology"] },
+            
+            // School of Physical Sciences (SPS)
+            { school: "School of Physical Sciences (SPS)", name: "Chemistry (CHM)", cutoff: 55.30, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Education Technology (EDT)", cutoff: 48.72, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Library and Information Science (LIS)", cutoff: 48.90, requiredSubjects: [] },
+            { school: "School of Physical Sciences (SPS)", name: "Mathematics (MTS)", cutoff: 59.64, requiredSubjects: ["Mathematics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Physics Electronics (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Physics Energy (PHY)", cutoff: 50.70, requiredSubjects: ["Physics"] },
+            { school: "School of Physical Sciences (SPS)", name: "Statistics (STA)", cutoff: 50.00, requiredSubjects: ["Mathematics"] }
+        ];
+        // Display all courses on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const allCoursesContainer = document.getElementById('all-courses');
+            
+            // Group courses by school
+            const coursesBySchool = {};
+            coursesData.forEach(course => {
+                if (!coursesBySchool[course.school]) {
+                    coursesBySchool[course.school] = [];
+                }
+                coursesBySchool[course.school].push(course);
+            });
+            
+            // Display courses by school
+            for (const school in coursesBySchool) {
+                const schoolSection = document.createElement('div');
+                schoolSection.className = 'school-section';
+                schoolSection.innerHTML = `<h3>${school}</h3>`;
+                
+                const schoolCourses = coursesBySchool[school];
+                const coursesContainer = document.createElement('div');
+                coursesContainer.className = 'course-list';
+                
+                schoolCourses.forEach(course => {
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'course-card';
+                    courseCard.innerHTML = `
+                        <h4>${course.name}</h4>
+                        <p class="cutoff">Cut-off: ${course.cutoff}</p>
+                        ${course.requiredSubjects.length > 0 ? `<p>Required UTME Subjects: ${course.requiredSubjects.join(', ')}</p>` : ''}
+                    `;
+                    coursesContainer.appendChild(courseCard);
+                });
+                
+                schoolSection.appendChild(coursesContainer);
+                allCoursesContainer.appendChild(schoolSection);
+            }
+        });
+
+        // Check eligibility functionality
+        document.getElementById('check-eligibility').addEventListener('click', function() {
+            const aggregateScore = parseFloat(document.getElementById('aggregate-score').value);
+            
+            if (isNaN(aggregateScore)) {
+                alert('Please enter a valid aggregate score');
+                return;
+            }
+            
+            // Get selected UTME subjects
+            const utmeSubjects = [
+                document.getElementById('utme-subject1').value,
+                document.getElementById('utme-subject2').value,
+                document.getElementById('utme-subject3').value,
+                document.getElementById('utme-subject4').value
+            ].filter(subject => subject !== ""); // Remove empty selections
+            
+            if (utmeSubjects.length < 4) {
+                alert('Please select all 4 UTME subjects');
+                return;
+            }
+            
+            // Get eligible courses
+            const eligibleCourses = coursesData.filter(course => {
+                // Check if score meets cutoff
+                if (aggregateScore < course.cutoff) return false;
+                
+                // Check if user has required subjects
+                if (course.requiredSubjects.length > 0) {
+                    return course.requiredSubjects.every(subject => utmeSubjects.includes(subject));
+                }
+                
+                return true;
+            });
+            
+            // Display eligible courses
+            const courseListContainer = document.getElementById('course-list');
+            courseListContainer.innerHTML = '';
+            
+            if (eligibleCourses.length === 0) {
+                courseListContainer.innerHTML = '<div class="alert alert-warning">No courses found for your score and subject combination. Consider improving your score or exploring other institutions.</div>';
+            } else {
+                // Group eligible courses by school
+                const eligibleBySchool = {};
+                eligibleCourses.forEach(course => {
+                    if (!eligibleBySchool[course.school]) {
+                        eligibleBySchool[course.school] = [];
+                    }
+                    eligibleBySchool[course.school].push(course);
+                });
+                
+                // Display eligible courses by school
+                for (const school in eligibleBySchool) {
+                    const schoolCourses = eligibleBySchool[school];
+                    
+                    schoolCourses.forEach(course => {
+                        const courseCard = document.createElement('div');
+                        courseCard.className = 'course-card eligible';
+                        courseCard.innerHTML = `
+                            <h4>${course.name}</h4>
+                            <p>${course.school}</p>
+                            <p class="cutoff">Cut-off: ${course.cutoff}</p>
+                            ${course.requiredSubjects.length > 0 ? `<p>Required Subjects: ${course.requiredSubjects.join(', ')}</p>` : ''}
+                        `;
+                        courseListContainer.appendChild(courseCard);
+                    });
+                }
+            }
+            
+            document.getElementById('eligible-courses').style.display = 'block';
+            
+            // Update the "Eligible Only" tab
+            updateEligibleOnlyTab(eligibleCourses);
+        });
+
+        // Function to update the "Eligible Only" tab
+        function updateEligibleOnlyTab(eligibleCourses) {
+            const eligibleOnlyContainer = document.getElementById('eligible-only');
+            eligibleOnlyContainer.innerHTML = '';
+            
+            if (eligibleCourses.length === 0) {
+                eligibleOnlyContainer.innerHTML = '<div class="alert alert-warning">No eligible courses found based on your criteria.</div>';
+                return;
+            }
+            
+            // Group eligible courses by school
+            const eligibleBySchool = {};
+            eligibleCourses.forEach(course => {
+                if (!eligibleBySchool[course.school]) {
+                    eligibleBySchool[course.school] = [];
+                }
+                eligibleBySchool[course.school].push(course);
+            });
+            
+            // Display eligible courses by school
+            for (const school in eligibleBySchool) {
+                const schoolSection = document.createElement('div');
+                schoolSection.className = 'school-section';
+                schoolSection.innerHTML = `<h3>${school}</h3>`;
+                
+                const schoolCourses = eligibleBySchool[school];
+                const coursesContainer = document.createElement('div');
+                coursesContainer.className = 'course-list';
+                
+                schoolCourses.forEach(course => {
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'course-card eligible';
+                    courseCard.innerHTML = `
+                        <h4>${course.name}</h4>
+                        <p class="cutoff">Cut-off: ${course.cutoff}</p>
+                        ${course.requiredSubjects.length > 0 ? `<p>Required UTME Subjects: ${course.requiredSubjects.join(', ')}</p>` : ''}
+                    `;
+                    coursesContainer.appendChild(courseCard);
+                });
+                
+                schoolSection.appendChild(coursesContainer);
+                eligibleOnlyContainer.appendChild(schoolSection);
+            }
+        }
+        let currentTheme = 0;
+const themes = [
+  { primary: '#001f3f', secondary: '#ffffff' }, // Navy
+  { primary: '#B22222', secondary: '#ffffff' }, // Red
+  { primary: '#228B22', secondary: '#ffffff' }, // Green
+  { primary: '#9370DB', secondary: '#ffffff' }, // Purple
+  { primary: '#FFD700', secondary: '#333333' }, // Yellow
+  { primary: '#FF69B4', secondary: '#ffffff' }  // Pink
+];
+
+function changeTheme() {
+  currentTheme = (currentTheme + 1) % themes.length;
+  const theme = themes[currentTheme];
+  
+  // Override colors on common elements
+  document.querySelectorAll('header, nav, footer, .header, .nav, .footer').forEach(el => {
+    el.style.backgroundColor = theme.primary;
+    el.style.color = theme.secondary;
+  });
+  
+  document.body.style.backgroundColor = theme.secondary;
+  
+  // Save preference
+  localStorage.setItem('simpleTheme', currentTheme);
+}
+
+// Load saved theme
+if (localStorage.getItem('simpleTheme')) {
+  currentTheme = parseInt(localStorage.getItem('simpleTheme'));
+  changeTheme();
+}
+    </script>
+    <button id="themeButton" onclick="changeTheme()">🎨 Themes</button>
+</body>
+</html>
