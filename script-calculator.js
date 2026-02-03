@@ -209,7 +209,7 @@ function copyResults() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide Screening Calculator https://envilinksfutafresherguide.vercel.app/calculator.html)
+    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide Screening Calculator https://envilinksfutafresherguide.vercel.app/calculator.html
     `;
     
     navigator.clipboard.writeText(text)

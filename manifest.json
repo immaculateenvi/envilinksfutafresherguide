@@ -1,7 +1,7 @@
 {
   "name": "Envilinks FUTA Fresher Guide",
-  "short_name": "FUTA Guide",
-  "description": "FUTA Screening Calculator and Course Eligibility Checker",
+  "short_name": "Envilinks FUTA Fresher Guide",
+  "description": "Federal University of Technology Akure FUTA Screening Calculator and Course Eligibility Checker",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#003366",
