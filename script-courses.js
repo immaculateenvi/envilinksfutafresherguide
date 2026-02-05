@@ -77,6 +77,8 @@ const coursesData = [
     { school: "SLS", short: "BIO", name: "Biology (BIO)", cutoff: 52.62, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🔬" },
     { school: "SLS", short: "BTH", name: "Biotechnology (BTH)", cutoff: 58.43, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🧬" },
     { school: "SLS", short: "MCB", name: "Microbiology (MCB)", cutoff: 64.30, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🦠" },
+    { school: "SLS", short: "PLB", name: "Plant Biology (PLB)", cutoff: 50.30, requiredSubjects: ["English", "Biology", "Chemistry", "Physics"], emoji: "🦠" },
+    { school: "SLS", short: "ANB", name: "Animal Biology (ANB)", cutoff: 58.43, requiredSubjects: ["English", "Biology", "Chemistry", "Physics"], emoji: "🧬" },
     
     // School of Physical Sciences (SPS) 🔭
     { school: "SPS", short: "CHM", name: "Chemistry (CHM)", cutoff: 55.30, requiredSubjects: ["English", "Chemistry", "two of Physics/Biology/Mathematics"], emoji: "⚗️" },
@@ -84,7 +86,7 @@ const coursesData = [
     { school: "SPS", short: "LIS", name: "Library and Information Science (LIS)", cutoff: 48.90, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Biology"], emoji: "📚" },
     { school: "SPS", short: "MTS", name: "Mathematics (MTS)", cutoff: 59.64, requiredSubjects: ["English", "Mathematics", "any two of Physics/Chemistry/Economics/Biology"], emoji: "🧮" },
     { school: "SPS", short: "PHY", name: "Physics Electronics (PHY)", cutoff: 50.70, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Biology"], emoji: "🔌" },
-    { school: "SPS", short: "PHYE", name: "Physics Energy (PHY)", cutoff: 50.70, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Biology"], emoji: "⚡" },
+    { school: "SPS", short: "PHE", name: "Physics Energy (PHE)", cutoff: 50.70, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Biology"], emoji: "⚡" },
     { school: "SPS", short: "STA", name: "Statistics (STA)", cutoff: 50.00, requiredSubjects: ["English", "Mathematics", "Physics", "Chemistry/Economics"], emoji: "📊" }
 ];
 
