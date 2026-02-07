@@ -7,16 +7,14 @@ const coursesData = [
     { school: "SAAT", short: "CSP", name: "Crop Soil and Pest Management (CSP)", cutoff: 48.2, requiredSubjects: ["English", "Chemistry", "Biology/Agriculture", "Physics/Mathematics"], emoji: "🌱" },
     { school: "SAAT", short: "EWM", name: "Ecotourism and Wildlife Management (EWM)", cutoff: 47.70, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🐘" },
     { school: "SAAT", short: "FAT", name: "Fisheries and Aquaculture Technology (FAT)", cutoff: 47.50, requiredSubjects: ["English", "Chemistry", "Biology/Agricultural Science", "any other Science"], emoji: "🐟" },
-    { school: "SAAT", short: "FST", name: "Food Science And Technology (FST)", cutoff: 58.12, requiredSubjects: ["English", "Chemistry", "Mathematics/Physics", "Agricultural Science"], emoji: "🍎" },
     { school: "SAAT", short: "FWT", name: "Forestry and Wood Technology (FWT)", cutoff: 47.5, requiredSubjects: ["English", "Chemistry", "Biology/Agriculture", "Physics/Mathematics"], emoji: "🌲" },
     { school: "SAAT", short: "NTD", name: "Nutrition and Dietetics (NTD)", cutoff: 55.70, requiredSubjects: ["English", "Chemistry", "Biology", "Physics"], emoji: "🥗" },
     
     // College of Health and Health Sciences 🏥
-    { school: "SBMS", short: "ANY", name: "Anatomy (ANY)", cutoff: 60.40, requiredSubjects: ["English", "Mathematics", "Biology", "Chemistry/Physics"], emoji: "🦴" },
+    { school: "SBMS", short: "ANY", name: "Human Anatomy (ANY)", cutoff: 60.40, requiredSubjects: ["English", "Mathematics", "Biology", "Chemistry/Physics"], emoji: "🦴" },
     { school: "SBMS", short: "PHS", name: "Physiology (PHS)", cutoff: 57.26, requiredSubjects: ["English", "Biology", "Physics", "Chemistry"], emoji: "❤️" },
     { school: "SBMS", short: "NSC", name: "Nursing Science (NSC)", cutoff: 75, requiredSubjects: ["English", "Physics", "Biology", "Chemistry"], emoji: "👩‍⚕️" },
     { school: "SBMS", short: "PUH", name: "Public Health (PUH)", cutoff: 65, requiredSubjects: ["English", "Biology", "Physics", "Chemistry"], emoji: "🏥" },
-    { school: "SBCS", short: "BIM", name: "Biomedical Technology (BIM)", cutoff: 61.66, requiredSubjects: ["English", "Biology", "Physics", "Chemistry"], emoji: "🔬" },
     { school: "SBCS", short: "MLS", name: "Medical Laboratory Science (MLS)", cutoff: 67.28, requiredSubjects: ["English", "Physics", "Chemistry", "Biology"], emoji: "🧪" },
     { school: "SCS", short: "MBBS", name: "Medicine and Surgery (MBBS)", cutoff: 78.25, requiredSubjects: ["English", "Biology", "Physics", "Chemistry"], emoji: "⚕️" },
     
@@ -53,7 +51,7 @@ const coursesData = [
     
     // School of Environmental Technology (SET) 🏛️
     { school: "SET", short: "ARC", name: "Architecture (ARC)", cutoff: 72.90, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "🏛️" },
-    { school: "SET", short: "BDG", name: "Building Technology (BDG)", cutoff: 57.20, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "🏢" },
+    { school: "SET", short: "BDG", name: "Building (BDG)", cutoff: 57.20, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "🏢" },
     { school: "SET", short: "ESM", name: "Estate Management (ESM)", cutoff: 48.30, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "🏠" },
     { school: "SET", short: "IDD", name: "Industrial Design (IDD)", cutoff: 53.25, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "✏️" },
     { school: "SET", short: "QSV", name: "Quantity Survey (QSV)", cutoff: 57.60, requiredSubjects: ["English", "Physics", "Mathematics", "Chemistry/Geography"], emoji: "📐" },
@@ -64,7 +62,6 @@ const coursesData = [
     
     // School of Logistics and Innovation Technology (SLIT) 🚚
     { school: "SLIT", short: "BIT", name: "Business Information Technology (BIT)", cutoff: 50.00, requiredSubjects: ["English", "Mathematics", "Economics/Chemistry", "Physics"], emoji: "💼" },
-    { school: "SLIT", short: "BMT", name: "Business Management Technology (BMT)", cutoff: 50.00, requiredSubjects: ["English", "Mathematics", "Economics/Chemistry", "Physics"], emoji: "📈" },
     { school: "SLIT", short: "ENT", name: "Entrepreneurship Management Technology (ENT)", cutoff: 51.66, requiredSubjects: ["English", "Mathematics", "Economics/Chemistry", "Physics"], emoji: "🚀" },
     { school: "SLIT", short: "LTT", name: "Logistics And Transport Technology (LTT)", cutoff: 55.60, requiredSubjects: ["English", "Mathematics", "Economics/Chemistry", "Physics"], emoji: "🚚" },
     { school: "SLIT", short: "PMT", name: "Project Management Technology (PMT)", cutoff: 56.40, requiredSubjects: ["English", "Mathematics", "Economics/Chemistry", "Physics"], emoji: "📅" },
@@ -78,7 +75,7 @@ const coursesData = [
     { school: "SLS", short: "BTH", name: "Biotechnology (BTH)", cutoff: 58.43, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🧬" },
     { school: "SLS", short: "MCB", name: "Microbiology (MCB)", cutoff: 64.30, requiredSubjects: ["English", "Biology", "Chemistry", "Physics/Mathematics"], emoji: "🦠" },
     { school: "SLS", short: "PLB", name: "Plant Biology (PLB)", cutoff: 50.30, requiredSubjects: ["English", "Biology", "Chemistry", "Physics"], emoji: "🦠" },
-    { school: "SLS", short: "ANB", name: "Animal Biology (ANB)", cutoff: 58.43, requiredSubjects: ["English", "Biology", "Chemistry", "Physics"], emoji: "🧬" },
+    { school: "SLS", short: "ANB", name: "Animal and Environmental Biology (ANB)", cutoff: 58.43, requiredSubjects: ["English", "Biology", "Chemistry", "Physics"], emoji: "🧬" },
     
     // School of Physical Sciences (SPS) 🔭
     { school: "SPS", short: "CHM", name: "Chemistry (CHM)", cutoff: 55.30, requiredSubjects: ["English", "Chemistry", "two of Physics/Biology/Mathematics"], emoji: "⚗️" },
