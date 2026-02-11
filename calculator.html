@@ -8,6 +8,217 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
+    <style>
+        .feature-tabs-container {
+            margin-top: 2rem;
+        }
+
+        .feature-tabs {
+            display: flex;
+            gap: 5px;
+            background: var(--gray-light);
+            padding: 5px;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .feature-tab {
+            flex: 1;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            border-radius: calc(var(--border-radius) - 5px);
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+            min-width: 150px;
+        }
+
+        .feature-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .feature-tab:hover:not(.active) {
+            background: rgba(0, 51, 102, 0.1);
+        }
+
+        .feature-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .feature-content.active {
+            display: block;
+        }
+
+        .result-summary {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius);
+        }
+
+        .result-summary p {
+            margin-bottom: 0.8rem;
+        }
+
+        .result-summary strong {
+            color: var(--primary);
+        }
+
+        .recommendation {
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .recommendation.success {
+            background-color: rgba(40, 167, 69, 0.15);
+            color: #155724;
+            border-left: 4px solid var(--success);
+        }
+
+        .recommendation.warning {
+            background-color: rgba(255, 193, 7, 0.15);
+            color: #856404;
+            border-left: 4px solid var(--warning);
+        }
+
+        .recommendation.info {
+            background-color: rgba(23, 162, 184, 0.15);
+            color: #0c5460;
+            border-left: 4px solid var(--info);
+        }
+
+        .recommendation i {
+            margin-top: 2px;
+        }
+
+        .grade-recommendation {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--gray-light);
+            border-radius: var(--border-radius);
+        }
+
+        .grade-recommendation h5 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grade-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .grade-list li {
+            padding: 10px 15px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grade-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .grade-list strong {
+            color: var(--primary);
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .selected-grades {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius);
+        }
+
+        .grade-item-small {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 10px;
+            background: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .grade-item-small span {
+            color: var(--gray);
+        }
+
+        .grade-item-small strong {
+            color: var(--primary);
+        }
+
+        .grade-points {
+            font-size: 0.8rem;
+            color: var(--success);
+        }
+
+        .grade-summary {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--gray-light);
+            border-radius: var(--border-radius);
+        }
+
+        @keyframes highlight {
+            0% { background-color: rgba(255, 193, 7, 0.3); }
+            100% { background-color: transparent; }
+        }
+
+        .highlight {
+            animation: highlight 2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .feature-tabs {
+                flex-direction: column;
+            }
+            
+            .feature-tab {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .grade-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .selected-grades {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -35,18 +246,19 @@
             </div>
         </div>
     </header>
-<div style="background: linear-gradient(135deg, #003366, #004080); color: white; padding: 10px 0; margin: 15px 0; border-radius: 10px; overflow: hidden;">
-    <marquee behavior="scroll" direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 5px;">
-        <span style="margin-right: 40px;">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
-        <span style="margin-right: 40px;">🎯 Check course eligibility! </span>
-        <span style="margin-right: 40px;">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff </span>
-        <span style="margin-right: 40px;">🎓 Click course codes for details! </span>
-        <span style="margin-right: 40px;">🔍 Filter courses by eligibility! </span>
-        <span style="margin-right: 40px;">📝 Use Screening Calculator for score! </span>
-    </marquee>
-</div>
+
+    <div style="background: linear-gradient(135deg, #003366, #004080); color: white; padding: 10px 0; margin: 15px 0; border-radius: 10px; overflow: hidden;">
+        <marquee behavior="scroll" direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 5px;">
+            <span style="margin-right: 40px;">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
+            <span style="margin-right: 40px;">🎯 Check course eligibility! </span>
+            <span style="margin-right: 40px;">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff </span>
+            <span style="margin-right: 40px;">🎓 Click course codes for details! </span>
+            <span style="margin-right: 40px;">🔍 Filter courses by eligibility! </span>
+            <span style="margin-right: 40px;">📝 Use Screening Calculator for score! </span>
+        </marquee>
+    </div>
+
     <main class="container">
-        <!-- Calculator Page Content -->
         <section id="calculator" class="page active">
             <div class="hero">
                 <h2>Screening Score Calculator</h2>
@@ -67,6 +279,212 @@
                 </div>
             </div>
 
+            <div class="content-section">
+                <h3><i class="fas fa-calculator"></i> Advanced Calculators</h3>
+                
+                <div class="feature-tabs-container">
+                    <div class="feature-tabs">
+                        <button class="feature-tab active" data-feature="aggregate">
+                            <i class="fas fa-calculator"></i> Calculate Aggregate
+                        </button>
+                        <button class="feature-tab" data-feature="utme">
+                            <i class="fas fa-user-graduate"></i> Find Required UTME
+                        </button>
+                        <button class="feature-tab" data-feature="olevel">
+                            <i class="fas fa-book"></i> Find Required O'Level
+                        </button>
+                    </div>
+                    
+                    <!-- Aggregate Calculator -->
+                    <div id="aggregate-content" class="feature-content active">
+                        <div class="info-note">
+                            <p><i class="fas fa-info-circle"></i> Calculate your total aggregate score using your O'level grades and JAMB score.</p>
+                        </div>
+                        
+                        <form id="screening-form">
+                            <div class="form-group">
+                                <label><i class="fas fa-book"></i> Select Your Five Core O'level Subjects and Grades:</label>
+                                
+                                <div class="subjects-container" id="subjects-container">
+                                    <!-- Subjects will be added here dynamically -->
+                                </div>
+                                
+                                <button type="button" id="add-subject" class="add-subject-btn">
+                                    <i class="fas fa-plus"></i> Add Subject
+                                </button>
+                                <small class="form-note">Note: You need exactly 5 subjects. Subjects with same name will be ignored.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="jamb-score"><i class="fas fa-file-alt"></i> JAMB Score (out of 400):</label>
+                                <div class="input-with-icon">
+                                    <input type="number" id="jamb-score" min="0" max="400" required>
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-calculator"></i> Calculate My Score
+                                </button>
+                                <button type="button" id="reset-form" class="btn-secondary">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="result" class="result-box" style="display: none;">
+                            <h4><i class="fas fa-chart-line"></i> Your Screening Result</h4>
+                            <div class="result-details">
+                                <div class="result-item">
+                                    <span>O'Level Points</span>
+                                    <strong id="o-level-result">0.00/25</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>JAMB Points</span>
+                                    <strong id="jamb-result">0.00/75</strong>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Total Aggregate</span>
+                                    <strong id="total-result">0.00/100</strong>
+                                </div>
+                            </div>
+                            <div class="result-actions">
+                                <a href="courses.html" id="use-for-courses" class="btn-success">
+                                    <i class="fas fa-arrow-right"></i> Use for Course Eligibility
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Required UTME Calculator -->
+                    <div id="utme-content" class="feature-content">
+                        <div class="info-note">
+                            <p><i class="fas fa-info-circle"></i> Enter your desired aggregate and O'level grades to find out what UTME score you need.</p>
+                        </div>
+                        
+                        <form id="utme-calculator-form">
+                            <div class="form-group">
+                                <label><i class="fas fa-bullseye"></i> Desired Aggregate Score (0-100):</label>
+                                <div class="input-with-icon">
+                                    <input type="number" id="desired-aggregate" min="0" max="100" step="0.1" placeholder="e.g., 70.5">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-book"></i> Select Your O'Level Grades:</label>
+                                
+                                <div class="subjects-container" id="utme-subjects-container">
+                                    <!-- Subjects will be added here dynamically -->
+                                </div>
+                                
+                                <button type="button" id="add-utme-subject" class="add-subject-btn">
+                                    <i class="fas fa-plus"></i> Add Subject
+                                </button>
+                                <small class="form-note">Note: You need exactly 5 subjects. Subjects with same name will be ignored.</small>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="calculate-utme" class="btn-primary">
+                                    <i class="fas fa-calculator"></i> Calculate Required UTME
+                                </button>
+                                <button type="button" id="reset-utme" class="btn-secondary">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="utme-result" class="result-box" style="display: none;">
+                            <h4><i class="fas fa-chart-line"></i> Required UTME Score</h4>
+                            <div class="result-details">
+                                <div class="result-item">
+                                    <span>Your O'Level Points</span>
+                                    <strong id="current-olevel-points">0.00/25</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>Required JAMB Points</span>
+                                    <strong id="required-jamb-points">0.00/75</strong>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Required JAMB Score</span>
+                                    <strong id="required-jamb-score">0</strong>
+                                </div>
+                            </div>
+                            <div class="result-summary">
+                                <p><strong>Target Aggregate:</strong> <span id="desired-aggregate-display">0.00</span>/100</p>
+                                <div id="grade-summary" class="grade-summary"></div>
+                                <p id="utme-recommendation" class="recommendation"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Required O'Level Grades Calculator -->
+                    <div id="olevel-content" class="feature-content">
+                        <div class="info-note">
+                            <p><i class="fas fa-info-circle"></i> Enter your desired aggregate and JAMB score to find out what O'level grades you need.</p>
+                        </div>
+                        
+                        <form id="olevel-calculator-form">
+                            <div class="form-group">
+                                <label><i class="fas fa-bullseye"></i> Desired Aggregate Score (0-100):</label>
+                                <div class="input-with-icon">
+                                    <input type="number" id="desired-aggregate-olevel" min="0" max="100" step="0.1" placeholder="e.g., 70.5">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-file-alt"></i> Your JAMB Score (0-400):</label>
+                                <div class="input-with-icon">
+                                    <input type="number" id="jamb-score-input" min="0" max="400" placeholder="e.g., 280">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="calculate-olevel" class="btn-primary">
+                                    <i class="fas fa-calculator"></i> Calculate Required Grades
+                                </button>
+                                <button type="button" id="reset-olevel" class="btn-secondary">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="olevel-result-details" class="result-box" style="display: none;">
+                            <h4><i class="fas fa-chart-line"></i> Required O'Level Grades</h4>
+                            <div class="result-details">
+                                <div class="result-item">
+                                    <span>Your JAMB Points</span>
+                                    <strong id="current-jamb-points">0.00/75</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>Required O'Level Points</span>
+                                    <strong id="required-olevel-points">0.00/25</strong>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Required Average Grade</span>
+                                    <strong id="required-average-grade">0.00</strong>
+                                </div>
+                            </div>
+                            
+                            <div class="grade-recommendation">
+                                <h5><i class="fas fa-lightbulb"></i> Recommended Grade Combination:</h5>
+                                <ul id="recommended-grades" class="grade-list">
+                                    <!-- Grades will be added here -->
+                                </ul>
+                                <p id="grade-explanation" class="explanation"></p>
+                            </div>
+                            
+                            <div class="result-summary">
+                                <p><strong>Target Aggregate:</strong> <span id="desired-aggregate-olevel-display">0.00</span>/100</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="content-section">
                 <h3><i class="fas fa-calculator"></i> How to Calculate Your Screening Result</h3>
                 <p>The FUTA screening score is calculated using your O'level results and JAMB score, using 2025 calculation of 75:25:</p>
@@ -112,64 +530,6 @@
                     <div class="guide-section total-formula">
                         <h4><i class="fas fa-sum"></i> Total Aggregate</h4>
                         <p class="formula"><strong>Total = O'level Points + JAMB Points</strong></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h3><i class="fas fa-calculator"></i> Calculate Your Score</h3>
-                <form id="screening-form">
-                    <div class="form-group">
-                        <label><i class="fas fa-book"></i> Select Your Five Core O'level Subjects and Grades:</label>
-                        
-                        <div class="subjects-container" id="subjects-container">
-                            <!-- Subjects will be added here dynamically -->
-                        </div>
-                        
-                        <button type="button" id="add-subject" class="add-subject-btn">
-                            <i class="fas fa-plus"></i> Add Subject
-                        </button>
-                        <small class="form-note">Note: You need exactly 5 subjects. Subjects with same name will be ignored.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="jamb-score"><i class="fas fa-file-alt"></i> JAMB Score (out of 400):</label>
-                        <div class="input-with-icon">
-                            <input type="number" id="jamb-score" min="0" max="400" required>
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">
-                            <i class="fas fa-calculator"></i> Calculate My Score
-                        </button>
-                        <button type="button" id="reset-form" class="btn-secondary">
-                            <i class="fas fa-redo"></i> Reset
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="result" class="result-box" style="display: none;">
-                    <h4><i class="fas fa-chart-line"></i> Your Screening Result</h4>
-                    <div class="result-details">
-                        <div class="result-item">
-                            <span>O'Level Points</span>
-                            <strong id="o-level-result">0.00/30</strong>
-                        </div>
-                        <div class="result-item">
-                            <span>JAMB Points</span>
-                            <strong id="jamb-result">0.00/70</strong>
-                        </div>
-                        <div class="result-item total">
-                            <span>Total Aggregate</span>
-                            <strong id="total-result">0.00/100</strong>
-                        </div>
-                    </div>
-                    <div class="result-actions">
-                        <a href="courses.html" id="use-for-courses" class="btn-success">
-                            <i class="fas fa-arrow-right"></i> Use for Course Eligibility
-                        </a>
                     </div>
                 </div>
             </div>
@@ -241,6 +601,28 @@
             // Load saved theme
             const savedTheme = localStorage.getItem('futaTheme') || 'navy';
             document.body.setAttribute('data-theme', savedTheme);
+            
+            // Initialize feature tabs
+            const featureTabs = document.querySelectorAll('.feature-tab');
+            const featureContents = document.querySelectorAll('.feature-content');
+            
+            featureTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const featureId = this.getAttribute('data-feature');
+                    
+                    // Update active tab
+                    featureTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    featureContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${featureId}-content`) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
             
             // Register service worker for offline functionality
             if ('serviceWorker' in navigator) {
