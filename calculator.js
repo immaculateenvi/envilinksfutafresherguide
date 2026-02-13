@@ -486,7 +486,7 @@ function copyResults() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide`;
+    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide ( https://envilinksfutafresherguide.vercel.app/calculator.html/ ), you can also join their group @ https://chat.whatsapp.com/JvrXzPuUL3wAyAmjDpeouu?mode=wwt`;
     
     navigator.clipboard.writeText(text)
         .then(() => showNotification('Results copied to clipboard!', 'success'))

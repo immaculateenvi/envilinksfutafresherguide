@@ -31,6 +31,12 @@ self.addEventListener('install', event => {
 
 // Fetch event - network first for HTML, cache first for assets
 self.addEventListener('fetch', event => {
+    // Skip cross-origin requests
+    if (!event.request.url.startsWith(self.location.origin) && 
+        !event.request.url.includes('cdnjs.cloudflare.com')) {
+        return;
+    }
+
     // For HTML files - network first
     if (event.request.mode === 'navigate' || event.request.url.includes('.html')) {
         event.respondWith(

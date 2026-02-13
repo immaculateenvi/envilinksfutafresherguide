@@ -2,11 +2,12 @@
   "version": "3.0.0",
   "releaseDate": "2024-01-20",
   "changes": [
-    "Enhanced update system with automatic notifications",
+    "Added responsive hamburger menu for mobile devices",
+    "Enhanced offline functionality with improved caching",
     "Theme-matching marquee for latest news",
-    "Improved offline functionality",
     "Fixed course eligibility calculations",
-    "Added more courses to database"
+    "Added more courses to database",
+    "Improved header layout with sticky navigation"
   ],
   "news": [
     "FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session",
