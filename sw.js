@@ -1,77 +1,101 @@
-// Service Worker for offline functionality
-const CACHE_NAME = 'futa-guide-v2.0';
+// Service Worker for offline functionality with version control
+const CACHE_NAME = 'futa-guide-v3.0';
 const urlsToCache = [
     '/',
     '/index.html',
     '/calculator.html',
     '/courses.html',
     '/styles.css',
-    '/script-calculator.js',
-    '/script-courses.js',
+    '/calculator.js',
+    '/courses.js',
+    '/main.js',
+    '/version.js',
+    '/version.json',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
 // Install event
 self.addEventListener('install', event => {
+    console.log('[Service Worker] Installing version:', CACHE_NAME);
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                return cache.addAll(urlsToCache);
+                console.log('[Service Worker] Caching assets');
+                return cache.addAll(urlsToCache).catch(error => {
+                    console.error('[Service Worker] Cache failed:', error);
+                });
             })
     );
 });
 
-// Fetch event
+// Fetch event - network first for HTML, cache first for assets
 self.addEventListener('fetch', event => {
+    // For HTML files - network first
+    if (event.request.mode === 'navigate' || event.request.url.includes('.html')) {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, responseClone);
+                    });
+                    return response;
+                })
+                .catch(() => {
+                    return caches.match(event.request);
+                })
+        );
+        return;
+    }
+
+    // For other assets - cache first
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Return cached version if found
                 if (response) {
+                    // Update cache in background
+                    fetch(event.request)
+                        .then(networkResponse => {
+                            if (networkResponse && networkResponse.status === 200) {
+                                caches.open(CACHE_NAME).then(cache => {
+                                    cache.put(event.request, networkResponse);
+                                });
+                            }
+                        })
+                        .catch(() => {});
                     return response;
                 }
                 
-                // Otherwise fetch from network
                 return fetch(event.request)
                     .then(response => {
-                        // Check if we received a valid response
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-                        
-                        // Clone the response
-                        const responseToCache = response.clone();
-                        
-                        caches.open(CACHE_NAME)
-                            .then(cache => {
-                                cache.put(event.request, responseToCache);
+                        if (response && response.status === 200) {
+                            const responseClone = response.clone();
+                            caches.open(CACHE_NAME).then(cache => {
+                                cache.put(event.request, responseClone);
                             });
-                        
-                        return response;
-                    })
-                    .catch(() => {
-                        // If both cache and network fail, show offline page
-                        if (event.request.headers.get('accept').includes('text/html')) {
-                            return caches.match('/index.html');
                         }
+                        return response;
                     });
             })
     );
 });
 
-// Activate event
+// Activate event - clean up old caches
 self.addEventListener('activate', event => {
-    const cacheWhitelist = [CACHE_NAME];
-    
+    console.log('[Service Worker] Activating new version');
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('[Service Worker] Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
+        }).then(() => {
+            return self.clients.claim();
         })
     );
 });

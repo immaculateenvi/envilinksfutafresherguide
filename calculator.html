@@ -8,253 +8,60 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
-    <style>
-        .feature-tabs-container {
-            margin-top: 2rem;
-        }
-
-        .feature-tabs {
-            display: flex;
-            gap: 5px;
-            background: var(--gray-light);
-            padding: 5px;
-            border-radius: var(--border-radius);
-            margin-bottom: 1.5rem;
-            overflow-x: auto;
-        }
-
-        .feature-tab {
-            flex: 1;
-            padding: 12px 20px;
-            background: none;
-            border: none;
-            color: var(--dark);
-            cursor: pointer;
-            border-radius: calc(var(--border-radius) - 5px);
-            transition: var(--transition);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            white-space: nowrap;
-            min-width: 150px;
-        }
-
-        .feature-tab.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .feature-tab:hover:not(.active) {
-            background: rgba(0, 51, 102, 0.1);
-        }
-
-        .feature-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .feature-content.active {
-            display: block;
-        }
-
-        .result-summary {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: var(--border-radius);
-        }
-
-        .result-summary p {
-            margin-bottom: 0.8rem;
-        }
-
-        .result-summary strong {
-            color: var(--primary);
-        }
-
-        .recommendation {
-            padding: 12px 16px;
-            border-radius: var(--border-radius);
-            margin: 1rem 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .recommendation.success {
-            background-color: rgba(40, 167, 69, 0.15);
-            color: #155724;
-            border-left: 4px solid var(--success);
-        }
-
-        .recommendation.warning {
-            background-color: rgba(255, 193, 7, 0.15);
-            color: #856404;
-            border-left: 4px solid var(--warning);
-        }
-
-        .recommendation.info {
-            background-color: rgba(23, 162, 184, 0.15);
-            color: #0c5460;
-            border-left: 4px solid var(--info);
-        }
-
-        .recommendation i {
-            margin-top: 2px;
-        }
-
-        .grade-recommendation {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: var(--gray-light);
-            border-radius: var(--border-radius);
-        }
-
-        .grade-recommendation h5 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .grade-list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .grade-list li {
-            padding: 10px 15px;
-            background: var(--white);
-            border-radius: var(--border-radius);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .grade-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .grade-list strong {
-            color: var(--primary);
-        }
-
-        .explanation {
-            margin-top: 1rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .selected-grades {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: var(--border-radius);
-        }
-
-        .grade-item-small {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 5px 10px;
-            background: white;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-
-        .grade-item-small span {
-            color: var(--gray);
-        }
-
-        .grade-item-small strong {
-            color: var(--primary);
-        }
-
-        .grade-points {
-            font-size: 0.8rem;
-            color: var(--success);
-        }
-
-        .grade-summary {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: var(--gray-light);
-            border-radius: var(--border-radius);
-        }
-
-        @keyframes highlight {
-            0% { background-color: rgba(255, 193, 7, 0.3); }
-            100% { background-color: transparent; }
-        }
-
-        .highlight {
-            animation: highlight 2s ease;
-        }
-
-        @media (max-width: 768px) {
-            .feature-tabs {
-                flex-direction: column;
-            }
-            
-            .feature-tab {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .grade-list li {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .selected-grades {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <meta name="app-version" content="3.0.0">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
+                <!-- Logo -->
                 <div class="logo">
                     <i class="fas fa-university"></i>
                     <h1>FUTA Score Calculator</h1>
+                    <span class="version-badge" id="versionDisplay">v3.0.0</span>
                 </div>
-                <nav>
-                    <button class="mobile-menu-btn" aria-label="Toggle menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="calculator.html" class="nav-link active"><i class="fas fa-calculator"></i> Calculator</a></li>
-                        <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
-                    </ul>
+
+                <!-- Navigation - Simple horizontal menu -->
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="calculator.html" class="nav-link active">
+                        <i class="fas fa-calculator"></i>
+                        <span>Calculator</span>
+                    </a>
+                    <a href="courses.html" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </a>
                 </nav>
-                <div class="theme-switcher">
-                    <button id="themeToggle" aria-label="Change theme">
+
+                <!-- Theme Controls -->
+                <div class="theme-controls">
+                    <button class="theme-btn" id="themeToggle" title="Change theme">
                         <i class="fas fa-palette"></i>
+                    </button>
+                    <button class="update-btn" id="checkUpdateBtn" title="Check for updates">
+                        <i class="fas fa-sync-alt"></i>
+                        <span class="update-badge" id="updateBadge" style="display: none;">1</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <div style="background: linear-gradient(135deg, #003366, #004080); color: white; padding: 10px 0; margin: 15px 0; border-radius: 10px; overflow: hidden;">
-        <marquee behavior="scroll" direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 5px;">
-            <span style="margin-right: 40px;">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
-            <span style="margin-right: 40px;">🎯 Check course eligibility! </span>
-            <span style="margin-right: 40px;">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff </span>
-            <span style="margin-right: 40px;">🎓 Click course codes for details! </span>
-            <span style="margin-right: 40px;">🔍 Filter courses by eligibility! </span>
-            <span style="margin-right: 40px;">📝 Use Screening Calculator for score! </span>
+    <!-- News Marquee - Theme Matching -->
+    <div class="news-marquee-container" id="marqueeContainer">
+        <div class="marquee-gradient-left"></div>
+        <div class="marquee-gradient-right"></div>
+        <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
+            <span class="news-item">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
+            <span class="news-item">🎯 Check course eligibility!</span>
+            <span class="news-item">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff</span>
+            <span class="news-item">🎓 Click course codes for details!</span>
+            <span class="news-item">🔍 Filter courses by eligibility!</span>
+            <span class="news-item">📝 Use Screening Calculator for score!</span>
         </marquee>
     </div>
 
@@ -285,13 +92,13 @@
                 <div class="feature-tabs-container">
                     <div class="feature-tabs">
                         <button class="feature-tab active" data-feature="aggregate">
-                            <i class="fas fa-calculator"></i> Calculate Aggregate
+                            <i class="fas fa-calculator"></i> <span>Calculate Aggregate</span>
                         </button>
                         <button class="feature-tab" data-feature="utme">
-                            <i class="fas fa-user-graduate"></i> Find Required UTME
+                            <i class="fas fa-user-graduate"></i> <span>Find Required UTME</span>
                         </button>
                         <button class="feature-tab" data-feature="olevel">
-                            <i class="fas fa-book"></i> Find Required O'Level
+                            <i class="fas fa-book"></i> <span>Find Required O'Level</span>
                         </button>
                     </div>
                     
@@ -568,83 +375,20 @@
         </div>
     </footer>
 
-    <script src="script-calculator.js"></script>
+    <!-- Offline Status Indicator -->
+    <div id="offline-status" class="offline-status" style="display: none;">
+        <i class="fas fa-wifi-slash"></i>
+        <span>You are offline. Using saved data.</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="version.js"></script>
+    <script src="main.js"></script>
+    <script src="calculator.js"></script>
     <script>
-        // Simple theme changer for calculator page
         document.addEventListener('DOMContentLoaded', function() {
-            // Set current year
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', changeTheme);
-            }
-            
-            // Mobile menu
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navList = document.querySelector('.nav-list');
-            
-            if (mobileMenuBtn && navList) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navList.classList.toggle('active');
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        navList.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('futaTheme') || 'navy';
-            document.body.setAttribute('data-theme', savedTheme);
-            
-            // Initialize feature tabs
-            const featureTabs = document.querySelectorAll('.feature-tab');
-            const featureContents = document.querySelectorAll('.feature-content');
-            
-            featureTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const featureId = this.getAttribute('data-feature');
-                    
-                    // Update active tab
-                    featureTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    featureContents.forEach(content => {
-                        content.classList.remove('active');
-                        if (content.id === `${featureId}-content`) {
-                            content.classList.add('active');
-                        }
-                    });
-                });
-            });
-            
-            // Register service worker for offline functionality
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            }
         });
-        
-        function changeTheme() {
-            const themes = ['navy', 'red', 'green', 'purple', 'yellow', 'pink'];
-            const currentTheme = document.body.getAttribute('data-theme') || 'navy';
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            
-            document.body.setAttribute('data-theme', themes[nextIndex]);
-            localStorage.setItem('futaTheme', themes[nextIndex]);
-        }
     </script>
 </body>
 </html>

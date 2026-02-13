@@ -1,0 +1,21 @@
+{
+  "version": "3.0.0",
+  "releaseDate": "2024-01-20",
+  "changes": [
+    "Enhanced update system with automatic notifications",
+    "Theme-matching marquee for latest news",
+    "Improved offline functionality",
+    "Fixed course eligibility calculations",
+    "Added more courses to database"
+  ],
+  "news": [
+    "FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session",
+    "Check course eligibility!",
+    "Green = High chance • Yellow = Moderate • Red = Below cutoff",
+    "Click course codes for details!",
+    "Filter courses by eligibility!",
+    "Use Screening Calculator for score!"
+  ],
+  "forceUpdate": false,
+  "minVersion": "2.0.0"
+}

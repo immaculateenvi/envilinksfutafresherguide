@@ -8,47 +8,64 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
+    <meta name="app-version" content="3.0.0">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
+                <!-- Logo -->
                 <div class="logo">
                     <i class="fas fa-university"></i>
                     <h1>FUTA Course Checker</h1>
+                    <span class="version-badge" id="versionDisplay">v3.0.0</span>
                 </div>
-                <nav>
-                    <button class="mobile-menu-btn" aria-label="Toggle menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Calculator</a></li>
-                        <li><a href="courses.html" class="nav-link active"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
-                    </ul>
+
+                <!-- Navigation - Simple horizontal menu -->
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="calculator.html" class="nav-link">
+                        <i class="fas fa-calculator"></i>
+                        <span>Calculator</span>
+                    </a>
+                    <a href="courses.html" class="nav-link active">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </a>
                 </nav>
-                <div class="theme-switcher">
-                    <button id="themeToggle" aria-label="Change theme">
+
+                <!-- Theme Controls -->
+                <div class="theme-controls">
+                    <button class="theme-btn" id="themeToggle" title="Change theme">
                         <i class="fas fa-palette"></i>
+                    </button>
+                    <button class="update-btn" id="checkUpdateBtn" title="Check for updates">
+                        <i class="fas fa-sync-alt"></i>
+                        <span class="update-badge" id="updateBadge" style="display: none;">1</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
-    
-<!-- Simple Marquee - Add this to your courses.html -->
-<div style="background: linear-gradient(135deg, #003366, #004080); color: white; padding: 10px 0; margin: 15px 0; border-radius: 10px; overflow: hidden;">
-    <marquee behavior="scroll" direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 5px;">
-        <span style="margin-right: 40px;">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
-        <span style="margin-right: 40px;">🎯 Check course eligibility! </span>
-        <span style="margin-right: 40px;">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff </span>
-        <span style="margin-right: 40px;">🎓 Click course codes for details! </span>
-        <span style="margin-right: 40px;">🔍 Filter courses by eligibility! </span>
-        <span style="margin-right: 40px;">📝 Use Screening Calculator for score! </span>
-    </marquee>
-</div>
+
+    <!-- News Marquee - Theme Matching -->
+    <div class="news-marquee-container" id="marqueeContainer">
+        <div class="marquee-gradient-left"></div>
+        <div class="marquee-gradient-right"></div>
+        <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
+            <span class="news-item">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
+            <span class="news-item">🎯 Check course eligibility!</span>
+            <span class="news-item">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff</span>
+            <span class="news-item">🎓 Click course codes for details!</span>
+            <span class="news-item">🔍 Filter courses by eligibility!</span>
+            <span class="news-item">📝 Use Screening Calculator for score!</span>
+        </marquee>
+    </div>
+
     <main class="container">
-        <!-- Course Eligibility Page Content -->
         <section id="courses" class="page active">
             <div class="hero">
                 <h2>Course Eligibility Checker</h2>
@@ -177,39 +194,32 @@
         </div>
     </footer>
 
-    <script src="script-courses.js"></script>
+    <!-- Offline Status Indicator -->
+    <div id="offline-status" class="offline-status" style="display: none;">
+        <i class="fas fa-wifi-slash"></i>
+        <span>You are offline. Using saved data.</span>
+    </div>
+
+    <!-- Course Detail Modal -->
+    <div id="course-detail-modal" class="course-detail-modal" style="display: none;">
+        <div class="course-detail-content">
+            <div class="course-detail-header">
+                <h3>Course Details</h3>
+                <button class="course-detail-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="course-detail-body" id="course-detail-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="version.js"></script>
+    <script src="main.js"></script>
+    <script src="courses.js"></script>
     <script>
-        // Simple theme changer for courses page
         document.addEventListener('DOMContentLoaded', function() {
-            // Set current year
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', changeTheme);
-            }
-            
-            // Mobile menu
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navList = document.querySelector('.nav-list');
-            
-            if (mobileMenuBtn && navList) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navList.classList.toggle('active');
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        navList.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('futaTheme') || 'navy';
-            document.body.setAttribute('data-theme', savedTheme);
             
             // Load saved aggregate score from URL parameter or localStorage
             const urlParams = new URLSearchParams(window.location.search);
@@ -233,11 +243,9 @@
                 tab.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
                     
-                    // Update active tab
                     tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Show corresponding content
                     tabContents.forEach(content => {
                         content.style.display = 'none';
                         content.classList.remove('active');
@@ -253,65 +261,22 @@
                 });
             });
             
-            // Register service worker for offline functionality
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+            // Close modal when clicking outside or on close button
+            const modal = document.getElementById('course-detail-modal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
             }
             
-            // Check online status
-            checkOnlineStatus();
-            
-            // Listen for online/offline events
-            window.addEventListener('online', handleOnlineStatus);
-            window.addEventListener('offline', handleOnlineStatus);
-        });
-        
-        function changeTheme() {
-            const themes = ['navy', 'red', 'green', 'purple', 'yellow', 'pink'];
-            const currentTheme = document.body.getAttribute('data-theme') || 'navy';
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            
-            document.body.setAttribute('data-theme', themes[nextIndex]);
-            localStorage.setItem('futaTheme', themes[nextIndex]);
-        }
-        
-        function checkOnlineStatus() {
-            const offlineStatus = document.getElementById('offline-status');
-            if (!offlineStatus) {
-                const offlineHTML = `
-                    <div id="offline-status" class="offline-status">
-                        <i class="fas fa-wifi-slash"></i>
-                        <span>You are offline. Using saved data.</span>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', offlineHTML);
-            }
-            
-            handleOnlineStatus();
-        }
-        
-        function handleOnlineStatus() {
-            const offlineStatus = document.getElementById('offline-status');
-            if (offlineStatus) {
-                if (navigator.onLine) {
-                    offlineStatus.style.display = 'none';
-                } else {
-                    offlineStatus.style.display = 'flex';
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
                 }
-            }
-        }
-        
-        // Make showCourseDetails function available globally
-        window.showCourseDetails = showCourseDetails;
-        
-
+            });
+        });
     </script>
 </body>
 </html>

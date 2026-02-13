@@ -8,50 +8,68 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
+    <meta name="app-version" content="3.0.0">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
+                <!-- Logo -->
                 <div class="logo">
                     <i class="fas fa-university"></i>
                     <h1>Envilinks FUTA Guide</h1>
+                    <span class="version-badge" id="versionDisplay">v3.0.0</span>
                 </div>
-                <nav>
-                    <button class="mobile-menu-btn" aria-label="Toggle menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Screening Calculator</a></li>
-                        <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Course Eligibility</a></li>
-                    </ul>
+
+                <!-- Navigation - Simple horizontal menu -->
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="calculator.html" class="nav-link">
+                        <i class="fas fa-calculator"></i>
+                        <span>Calculator</span>
+                    </a>
+                    <a href="courses.html" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </a>
                 </nav>
-                <div class="theme-switcher">
-                    <button id="themeToggle" aria-label="Change theme">
+
+                <!-- Theme Controls -->
+                <div class="theme-controls">
+                    <button class="theme-btn" id="themeToggle" title="Change theme">
                         <i class="fas fa-palette"></i>
+                    </button>
+                    <button class="update-btn" id="checkUpdateBtn" title="Check for updates">
+                        <i class="fas fa-sync-alt"></i>
+                        <span class="update-badge" id="updateBadge" style="display: none;">1</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
-    <div style="background: linear-gradient(135deg, #003366, #004080); color: white; padding: 10px 0; margin: 15px 0; border-radius: 10px; overflow: hidden;">
-    <marquee behavior="scroll" direction="left" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();" style="padding: 5px;">
-        <span style="margin-right: 40px;">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
-        <span style="margin-right: 40px;">🎯 Check course eligibility! </span>
-        <span style="margin-right: 40px;">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff </span>
-        <span style="margin-right: 40px;">🎓 Click course codes for details! </span>
-        <span style="margin-right: 40px;">🔍 Filter courses by eligibility! </span>
-        <span style="margin-right: 40px;">📝 Use Screening Calculator for score! </span>
-    </marquee>
-</div>
+
+    <!-- News Marquee - Theme Matching -->
+    <div class="news-marquee-container" id="marqueeContainer">
+        <div class="marquee-gradient-left"></div>
+        <div class="marquee-gradient-right"></div>
+        <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
+            <span class="news-item">🎯 FUTA is not accepting MBBS (Medicine and Surgery) students for the 2026/2027 session</span>
+            <span class="news-item">🎯 Check course eligibility!</span>
+            <span class="news-item">📊 Green = High chance • Yellow = Moderate • Red = Below cutoff</span>
+            <span class="news-item">🎓 Click course codes for details!</span>
+            <span class="news-item">🔍 Filter courses by eligibility!</span>
+            <span class="news-item">📝 Use Screening Calculator for score!</span>
+        </marquee>
+    </div>
 
     <main class="container">
-        <!-- Home Page Content -->
         <section id="home" class="page active">
             <div class="hero">
                 <h2>Federal University of Technology Akure</h2>
-                <p class="tagline"><i class="fas fa-motto"></i> Technology for Self Reliance</p>
+                <p class="tagline">Technology for Self Reliance</p>
                 <p>Your gateway to quality technological education in Nigeria</p>
                 <div class="hero-stats">
                     <div class="stat">
@@ -64,7 +82,7 @@
                     </div>
                     <div class="stat">
                         <i class="fas fa-school"></i>
-                        <span>13 Schools (Including School of Post Graduate Studies)</span>
+                        <span>13 Schools</span>
                     </div>
                 </div>
             </div>
@@ -74,10 +92,10 @@
                 <p>The Federal University of Technology Akure (FUTA) is a leading institution of higher learning in Nigeria, established in 1981. The university is committed to providing world-class education in technology, science, and engineering disciplines.</p>
                 
                 <div class="expandable-section">
-                    <button class="expand-btn">
+                    <button class="expand-btn" id="expandAboutBtn">
                         <i class="fas fa-chevron-down"></i> Read More About FUTA
                     </button>
-                    <div class="expandable-content">
+                    <div class="expandable-content" id="aboutContent">
                         <p>FUTA offers a wide range of undergraduate and postgraduate programs across various schools including Engineering, Sciences, Agriculture, Environmental Technology, and more. The university is known for its excellent academic standards, research output, and state-of-the-art facilities.</p>
                         <p>As a prospective student, this portal will help you calculate your screening score and determine which courses you may be eligible for based on your academic performance.</p>
                         
@@ -167,7 +185,7 @@
                     </div>
                     <div class="step">
                         <div class="step-icon">2</div>
-                        <p>Score above the UTME cut-off mark(180 for 2025/2026 Session)</p>
+                        <p>Score above the UTME cut-off mark (180 for 2025/2026 Session)</p>
                     </div>
                     <div class="step">
                         <div class="step-icon">3</div>
@@ -216,9 +234,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <p>&copy; <span id="current-year"></span> Envilinks FUTA Guide | For Educational Purposes Only | Version 2.0</p>
+                    <p>&copy; <span id="current-year"></span> Envilinks FUTA Guide | For Educational Purposes Only</p>
                     <p>Proudly created by <a href="https://eimc.vercel.app" target="_blank">Envilinks Interconnectivity Media Concept</a></p>
-                    <p>You can checkout our other proojects through this central page <a href="https://naijatertiarysummary.vercel.app">Naija Uni-Poly-College Guide</a></p>
+                    <p>Check out our other projects: <a href="https://naijatertiarysummary.vercel.app">Naija Uni-Poly-College Guide</a></p>
                 </div>
                 <div class="footer-links">
                     <a href="index.html" class="footer-link">Home</a>
@@ -229,22 +247,31 @@
         </div>
     </footer>
 
+    <!-- Offline Status Indicator -->
+    <div id="offline-status" class="offline-status" style="display: none;">
+        <i class="fas fa-wifi-slash"></i>
+        <span>You are offline. Using saved data.</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="version.js"></script>
+    <script src="main.js"></script>
     <script>
-        // Page-specific script for home page
+        // Page-specific initialization
         document.addEventListener('DOMContentLoaded', function() {
             // Set current year
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            // Setup expandable sections
-            const expandButtons = document.querySelectorAll('.expand-btn');
-            expandButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
+            // Expandable section
+            const expandBtn = document.getElementById('expandAboutBtn');
+            const aboutContent = document.getElementById('aboutContent');
+            
+            if (expandBtn && aboutContent) {
+                expandBtn.addEventListener('click', function() {
                     const icon = this.querySelector('i');
+                    aboutContent.classList.toggle('active');
                     
-                    content.classList.toggle('active');
-                    
-                    if (content.classList.contains('active')) {
+                    if (aboutContent.classList.contains('active')) {
                         icon.className = 'fas fa-chevron-up';
                         this.setAttribute('aria-expanded', 'true');
                     } else {
@@ -252,90 +279,8 @@
                         this.setAttribute('aria-expanded', 'false');
                     }
                 });
-            });
-            
-            // Mobile menu
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navList = document.querySelector('.nav-list');
-            
-            if (mobileMenuBtn && navList) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navList.classList.toggle('active');
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        navList.classList.remove('active');
-                    }
-                });
             }
-            
-            // Theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', changeTheme);
-            }
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('futaTheme') || 'navy';
-            document.body.setAttribute('data-theme', savedTheme);
-            
-            // Check online status
-            checkOnlineStatus();
-            
-            // Register service worker for offline functionality
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            }
-            
-            // Listen for online/offline events
-            window.addEventListener('online', handleOnlineStatus);
-            window.addEventListener('offline', handleOnlineStatus);
         });
-        
-        // Simple theme changer for home page
-        function changeTheme() {
-            const themes = ['navy', 'red', 'green', 'purple', 'yellow', 'pink'];
-            const currentTheme = document.body.getAttribute('data-theme') || 'navy';
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            
-            document.body.setAttribute('data-theme', themes[nextIndex]);
-            localStorage.setItem('futaTheme', themes[nextIndex]);
-        }
-        
-        function checkOnlineStatus() {
-            const offlineStatus = document.getElementById('offline-status');
-            if (!offlineStatus) {
-                const offlineHTML = `
-                    <div id="offline-status" class="offline-status">
-                        <i class="fas fa-wifi-slash"></i>
-                        <span>You are offline. Using saved data.</span>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', offlineHTML);
-            }
-            
-            handleOnlineStatus();
-        }
-        
-        function handleOnlineStatus() {
-            const offlineStatus = document.getElementById('offline-status');
-            if (offlineStatus) {
-                if (navigator.onLine) {
-                    offlineStatus.style.display = 'none';
-                } else {
-                    offlineStatus.style.display = 'flex';
-                }
-            }
-        }
     </script>
 </body>
 </html>
