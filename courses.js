@@ -11,6 +11,8 @@ const coursesData = [
     { school: "SAAT", short: "FAT", name: "Fisheries and Aquaculture Technology", cutoff: 47.50, requiredSubjects: ["English", "Chemistry", "Biology/Agricultural Science", "any other Science"], emoji: "🐟" },
     { school: "SAAT", short: "FWT", name: "Forestry and Wood Technology", cutoff: 47.5, requiredSubjects: ["English", "Chemistry", "Biology/Agriculture", "Physics/Mathematics"], emoji: "🌲" },
     { school: "SAAT", short: "NTD", name: "Nutrition and Dietetics", cutoff: 55.70, requiredSubjects: ["English", "Chemistry", "Biology", "Physics"], emoji: "🥗" },
+    { school: "SAAT", short: "FST", name: "Food Science and Technology", cutoff: 50.70, requiredSubjects: ["English", "Chemistry", "Biology", "Physics"], emoji: "🥗" },
+    
     
     // College of Health and Health Sciences 🏥
     { school: "SBMS", short: "ANY", name: "Human Anatomy", cutoff: 60.40, requiredSubjects: ["English", "Mathematics", "Biology", "Chemistry/Physics"], emoji: "🦴" },
