@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function checkForUpdates(manual = false) {
     if (!navigator.onLine) {
-        if (manual) showToast('You are offline. Connect to internet to check for updates.', 'warning');
+        if (manual && typeof showToast === 'function') showToast('You are offline. Connect to internet to check for updates.', 'warning');
         return;
     }
 
@@ -50,7 +50,7 @@ async function checkForUpdates(manual = false) {
                 }
             }
         } else {
-            if (manual) showToast('✓ You have the latest version', 'success');
+            if (manual && typeof showToast === 'function') showToast('✓ You have the latest version', 'success');
             
             // Hide badge if up to date
             const updateBadge = document.getElementById('updateBadge');
@@ -65,7 +65,7 @@ async function checkForUpdates(manual = false) {
         }
     } catch (error) {
         console.log('Version check failed:', error);
-        if (manual) showToast('⚠ Could not check for updates', 'error');
+        if (manual && typeof showToast === 'function') showToast('⚠ Could not check for updates', 'error');
     }
 }
 
@@ -148,27 +148,6 @@ function showForceUpdateNotification(newVersion, changes) {
     
     // Auto-update after 2 seconds
     setTimeout(updateApp, 2000);
-}
-
-function showToast(message, type = 'info') {
-    const themeColor = getComputedStyle(document.body).getPropertyValue('--primary').trim() || '#003366';
-    const bgColor = type === 'success' ? '#28a745' : type === 'warning' ? '#ffc107' : type === 'error' ? '#dc3545' : themeColor;
-    const textColor = type === 'warning' ? '#333' : 'white';
-    
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed; bottom: 20px; right: 20px; background: ${bgColor}; 
-        color: ${textColor}; padding: 12px 24px; border-radius: 8px; z-index: 9999; 
-        animation: slideIn 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        display: flex; align-items: center; gap: 10px;
-    `;
-    toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i> ${message}`;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.style.animation = 'fadeOut 0.3s';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
 }
 
 function updateMarquee(news) {

@@ -2036,3 +2036,158 @@ footer {
         margin-left: 0;
     }
 }
+/* Enhanced Course Detail Modal */
+.course-detail-content {
+    max-width: 700px;
+}
+
+.course-detail-header h3 {
+    color: white;
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-code-large {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.course-name-large {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.cutoff-large {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--success);
+    background: rgba(40, 167, 69, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.course-description {
+    line-height: 1.7;
+    margin: 10px 0;
+    padding: 15px;
+    background: var(--gray-light);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary);
+}
+
+.career-paths {
+    line-height: 1.7;
+    margin: 10px 0;
+    padding: 15px;
+    background: rgba(40, 167, 69, 0.05);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--success);
+}
+
+.department-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gray-light);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    margin: 10px 0;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.department-link:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.department-link i {
+    font-size: 1rem;
+}
+
+.program-emoji {
+    font-size: 2rem;
+    margin-left: 10px;
+}
+
+/* Enhanced course card styling */
+.course-card {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-card::after {
+    content: '🔍 Click for details';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: var(--gray);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.course-card:hover::after {
+    opacity: 0.7;
+}
+
+.description-item,
+.career-item {
+    background: var(--white);
+    border-radius: var(--border-radius);
+}
+
+/* Subjects list styling */
+.subjects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.subject-option {
+    background: var(--gray-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--dark);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Modal responsive adjustments */
+@media (max-width: 768px) {
+    .course-detail-content {
+        width: 95%;
+        margin: 10px auto;
+    }
+    
+    .course-description,
+    .career-paths {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+    
+    .department-link {
+        width: 100%;
+        justify-content: center;
+        word-break: break-all;
+    }
+}

@@ -26,9 +26,28 @@ function changeTheme() {
     updateMarqueeGradient();
     
     // Show toast notification
-    if (typeof showToast === 'function') {
-        showToast(`Theme changed to ${newTheme}`, 'info');
-    }
+    showToast(`Theme changed to ${newTheme}`, 'info');
+}
+
+function showToast(message, type = 'info') {
+    const themeColor = getComputedStyle(document.body).getPropertyValue('--primary').trim() || '#003366';
+    const bgColor = type === 'success' ? '#28a745' : type === 'warning' ? '#ffc107' : type === 'error' ? '#dc3545' : themeColor;
+    const textColor = type === 'warning' ? '#333' : 'white';
+    
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed; bottom: 20px; right: 20px; background: ${bgColor}; 
+        color: ${textColor}; padding: 12px 24px; border-radius: 8px; z-index: 9999; 
+        animation: slideIn 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: flex; align-items: center; gap: 10px;
+    `;
+    toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i> ${message}`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.3s';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
 }
 
 function updateMarqueeGradient() {
@@ -122,7 +141,7 @@ function handleOnlineStatus() {
 // Update Button
 function initUpdateButton() {
     const updateBtn = document.getElementById('checkUpdateBtn');
-    if (updateBtn && typeof checkForUpdates === 'function') {
+    if (updateBtn) {
         updateBtn.addEventListener('click', async function() {
             const btn = this;
             const originalHtml = btn.innerHTML;
@@ -151,9 +170,7 @@ function initServiceWorker() {
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             console.log('New version available');
-                            if (typeof checkForUpdates === 'function') {
-                                checkForUpdates(true);
-                            }
+                            checkForUpdates(true);
                         }
                     });
                 });

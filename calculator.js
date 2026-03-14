@@ -1,5 +1,16 @@
 // ========== CALCULATOR.JS - COMPLETE CALCULATOR FUNCTIONALITY ==========
 
+// Ensure showToast is available (fallback if not defined)
+if (typeof showToast !== 'function') {
+    window.showToast = function(message, type = 'info') {
+        console.log(`[${type}] ${message}`);
+        // Simple alert fallback for critical messages
+        if (type === 'error' || type === 'warning') {
+            alert(message);
+        }
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     initializeCalculator();
 });
@@ -495,6 +506,13 @@ function copyResults() {
 
 // ==================== NOTIFICATION FUNCTIONS ====================
 function showNotification(message, type = 'info') {
+    // Use the global showToast if available, otherwise create a simple notification
+    if (typeof showToast === 'function') {
+        showToast(message, type);
+        return;
+    }
+    
+    // Fallback notification system
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
     
