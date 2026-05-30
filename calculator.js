@@ -497,7 +497,7 @@ function copyResults() {
     const oLevelScore = document.getElementById('olevel-score').textContent;
     const jambScore = document.getElementById('jamb-score-display').textContent;
     
-    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide ( https://envilinksfutafresherguide.vercel.app/calculator.html/ ), you can also join their group @ https://chat.whatsapp.com/GK9vdKSQjlwLuEO618xyVV?mode=gi_t`;
+    const text = `My FUTA Screening Score Results:\n\n📊 O'Level Score: ${oLevelScore}\n📝 JAMB Score: ${jambScore}\n🏆 Total Aggregate: ${totalScore}\n\nCalculated using Envilinks FUTA Fresher Guide ( https://envilinksfutafresherguide.vercel.app/calculator.html/ ), you can also join their group @ https://chat.whatsapp.com/CgRECK0UvuCIGWK9qzudsj?s=cl&p=a&mlu=0&ilr=0&amv=1`;
     
     navigator.clipboard.writeText(text)
         .then(() => showNotification('Results copied to clipboard!', 'success'))
